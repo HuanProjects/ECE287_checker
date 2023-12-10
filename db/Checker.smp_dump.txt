@@ -1,0 +1,14 @@
+
+State Machine - |main|cursor_control:mod|NS
+Name NS.RETURN NS.UPDATE NS.GETTING_READY NS.START 
+NS.START 0 0 0 0 
+NS.GETTING_READY 0 0 1 1 
+NS.UPDATE 0 1 0 1 
+NS.RETURN 1 0 0 1 
+
+State Machine - |main|cursor_control:mod|S
+Name S.RETURN S.UPDATE S.GETTING_READY S.START 
+S.START 0 0 0 0 
+S.GETTING_READY 0 0 1 1 
+S.UPDATE 0 1 0 1 
+S.RETURN 1 0 0 1 
