@@ -31,112 +31,41 @@ end
 //example input for cursor and selected values
 reg[5:0] cursor_loc;
 reg[5:0] select_loc;
+// boardstate the board
+wire [191:0] serialized_board;
+wire [5:0] legal_move;
 
 cursor_control mod(
-    .clk(clk_25MHz),              	// Clock input
-    .rst(input_rst),           	   // rst input
-    .in_btn_up(btn_up),       	// Button input for moving up
-    .in_btn_down(btn_down),     	// Button input for moving down
-    .in_btn_left(btn_left),     	// Button input for moving left
-    .in_btn_right(btn_right),    	// Button input for moving right
-	 .in_selected(selected),			// Button input for picking a piece
-	 .sel_loc(select_loc),	// Location of selected piece
-    .location(cursor_loc) // Location of the cursor
+    .clk(clk_25MHz),             					 	// Clock input
+    .rst(input_rst),           	 					   // rst input
+    .in_btn_up(btn_up),       							// Button input for moving up
+    .in_btn_down(btn_down),     							// Button input for moving down
+    .in_btn_left(btn_left),     							// Button input for moving left
+    .in_btn_right(btn_right),    						// Button input for moving right
+	 .in_selected(selected),								// Button input for picking a piece
+	 .sel_loc(select_loc),									// Location of selected piece
+    .location(cursor_loc) 									// Location of the cursor
 );
 
 display screen(
-    .clk(clk_25MHz), // 25 MHz clock output
-    .rst(clk_rst),       // Reset input
-	 .serialized_board(serialized_board), // board state
-	 .cursor_loc(cursor_loc),
-	 .select_loc(select_loc),
-    .hsync(hsync),     // Horizontal sync output
-    .vsync(vsync),     // Vertical sync output
-    .red(red),   // Red channel
-    .green(green), // Green channel
-    .blue(blue)   // Blue channel
+    .clk(clk_25MHz), 										// 25 MHz clock output
+    .rst(clk_rst),      								   // Reset input
+	 .serialized_board(serialized_board), 				// board state
+	 .cursor_loc(cursor_loc),								// cursor location
+	 .select_loc(select_loc),								// selected piece location
+	 .legal_move(legal_move),								// location of the legal move
+    .hsync(hsync),     										// Horizontal sync output
+    .vsync(vsync),  										   // Vertical sync output
+    .red(red),  											   // Red channel
+    .green(green), 											// Green channel
+    .blue(blue) 											   // Blue channel
 );
 
-// board state
-/* board [ first 3 bits == x_axis, second 3 bits == y_axis] = 
-[2 == is there a piece in here(1 = yes),  1 == color(1 = red), 0 == is this a king(1 = yes)] */
-reg [2:0] board [63:0];	
-
-// serializing the board
-wire [192:0] serialized_board;
-genvar i;
-generate for (i=0; i<64; i=i+1) begin: BOARD
-	assign serialized_board[i*3+2 : i*3] = board[i];
-end
-endgenerate	
-	 
-// initial board
-always@(board)
-begin
-	board[{3'd0,3'd0}] = 3'b110; 
-	board[{3'd0,3'd1}] = 3'b0;
-	board[{3'd0,3'd2}] = 3'b110;
-	board[{3'd0,3'd3}] = 3'b0;
-	board[{3'd0,3'd4}] = 3'b0;
-	board[{3'd0,3'd5}] = 3'b0;
-	board[{3'd0,3'd6}] = 3'b100;
-	board[{3'd0,3'd7}] = 3'b0;
-	board[{3'd1,3'd0}] = 3'b0;
-	board[{3'd1,3'd1}] = 3'b110;
-	board[{3'd1,3'd2}] = 3'b0;
-	board[{3'd1,3'd3}] = 3'b0;
-	board[{3'd1,3'd4}] = 3'b0;
-	board[{3'd1,3'd5}] = 3'b100;
-	board[{3'd1,3'd6}] = 3'b0;
-	board[{3'd1,3'd7}] = 3'b100;
-	board[{3'd2,3'd0}] = 3'b110;
-	board[{3'd2,3'd1}] = 3'b0;
-	board[{3'd2,3'd2}] = 3'b110;
-	board[{3'd2,3'd3}] = 3'b0;
-	board[{3'd2,3'd4}] = 3'b0;
-	board[{3'd2,3'd5}] = 3'b0;
-	board[{3'd2,3'd6}] = 3'b100;
-	board[{3'd2,3'd7}] = 3'b0;
-	board[{3'd3,3'd0}] = 3'b0;
-	board[{3'd3,3'd1}] = 3'b110;
-	board[{3'd3,3'd2}] = 3'b0;
-	board[{3'd3,3'd3}] = 3'b0;
-	board[{3'd3,3'd4}] = 3'b0;
-	board[{3'd3,3'd5}] = 3'b100;
-	board[{3'd3,3'd6}] = 3'b0;
-	board[{3'd3,3'd7}] = 3'b100;
-	board[{3'd4,3'd0}] = 3'b110;
-	board[{3'd4,3'd1}] = 3'b0;
-	board[{3'd4,3'd2}] = 3'b110;
-	board[{3'd4,3'd3}] = 3'b0;
-	board[{3'd4,3'd4}] = 3'b0;
-	board[{3'd4,3'd5}] = 3'b0;
-	board[{3'd4,3'd6}] = 3'b100;
-	board[{3'd4,3'd7}] = 3'b0;
-	board[{3'd5,3'd0}] = 3'b0;
-	board[{3'd5,3'd1}] = 3'b110;
-	board[{3'd5,3'd2}] = 3'b0;
-	board[{3'd5,3'd3}] = 3'b0;
-	board[{3'd5,3'd4}] = 3'b0;
-	board[{3'd5,3'd5}] = 3'b100;
-	board[{3'd5,3'd6}] = 3'b0;
-	board[{3'd5,3'd7}] = 3'b100;
-	board[{3'd6,3'd0}] = 3'b110;
-	board[{3'd6,3'd1}] = 3'b0;
-	board[{3'd6,3'd2}] = 3'b110;
-	board[{3'd6,3'd3}] = 3'b0;
-	board[{3'd6,3'd4}] = 3'b0;
-	board[{3'd6,3'd5}] = 3'b0;
-	board[{3'd6,3'd6}] = 3'b100;
-	board[{3'd6,3'd7}] = 3'b0;
-	board[{3'd7,3'd0}] = 3'b0;
-	board[{3'd7,3'd1}] = 3'b110;
-	board[{3'd7,3'd2}] = 3'b0;
-	board[{3'd7,3'd3}] = 3'b0;
-	board[{3'd7,3'd4}] = 3'b0;
-	board[{3'd7,3'd5}] = 3'b100;
-	board[{3'd7,3'd6}] = 3'b0;
-	board[{3'd7,3'd7}] = 3'b100;
-end
-
+game_logic gameplay(
+	.clk(clk_25MHz),
+	.rst(input_rst),
+	.select_loc(select_loc), 						// location of the picked piece
+	.legal_move(legal_move),
+	.serialized_board(serialized_board)
+);
 endmodule 

@@ -1,10 +1,9 @@
 module display(
     input clk,
     input wire rst,       // Reset input
-	 input [191:0] serialized_board, // board state
+	 input [255:0] serialized_board, // board state
 	 input [5:0] cursor_loc, //location of the cursor
 	 input [5:0] select_loc, //loaction of selected piece
-	 input [5:0] legal_move, // legal move
     output wire hsync,     // Horizontal sync output
     output wire vsync,     // Vertical sync output
     output reg [7:0] red,   // Red channel
@@ -131,9 +130,6 @@ wire draw_cursor = ({x_axis, y_axis} == cursor_loc) && ((h_count < x_center - 25
 																		 || (v_count < y_center - 25) || (v_count > y_center + 25)); // draw the cursor
 wire draw_select = ({x_axis, y_axis} == select_loc); //draw the selected piece
 
-// draw legal move
-wire is_legal = ({x_axis, y_axis} == legal_move);
-
 //deserializing the board
 wire[2:0] board[63:0];
 genvar i;
@@ -251,18 +247,7 @@ always @(*) begin
 					red = 8'h00; // black space
 					green = 8'h00;
 					blue = 8'h00;
-					// drawing legal move a white circle
-					if (is_legal) begin
-						if (is_in_small_circle == 1'b1) begin
-							red = 8'd0; // black
-							green = 8'd0;
-							blue = 8'd0;
-						end else if (is_in_big_circle == 1'b1) begin
-							red = 8'hFF; // white
-							green = 8'hFF;
-							blue = 8'hFF;
-						end
-					end else if (draw_cursor) begin // draw cursor
+					if (draw_cursor) begin // draw cursor
 						red = 8'h00; // dark green
 						green = 8'h99;
 						blue = 8'h00;

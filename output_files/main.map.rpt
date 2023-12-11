@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Sun Dec 10 15:31:47 2023
+Sun Dec 10 21:14:44 2023
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -16,20 +16,19 @@ Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
   8. Analysis & Synthesis DSP Block Usage Summary
   9. State Machine - |main|cursor_control:mod|NS
  10. State Machine - |main|cursor_control:mod|S
- 11. Registers Removed During Synthesis
- 12. General Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: cursor_control:mod
- 15. Parameter Settings for User Entity Instance: display:screen
- 16. Parameter Settings for User Entity Instance: display:screen|vga_driver:driver
- 17. Parameter Settings for Inferred Entity Instance: display:screen|lpm_mult:Mult0
- 18. Parameter Settings for Inferred Entity Instance: display:screen|lpm_mult:Mult1
- 19. lpm_mult Parameter Settings by Entity Instance
- 20. Port Connectivity Checks: "display:screen"
+ 11. User-Specified and Inferred Latches
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: cursor_control:mod
+ 16. Parameter Settings for User Entity Instance: display:screen
+ 17. Parameter Settings for User Entity Instance: display:screen|vga_driver:driver
+ 18. Parameter Settings for Inferred Entity Instance: display:screen|lpm_mult:Mult0
+ 19. Parameter Settings for Inferred Entity Instance: display:screen|lpm_mult:Mult1
+ 20. lpm_mult Parameter Settings by Entity Instance
  21. Post-Synthesis Netlist Statistics for Top Partition
  22. Elapsed Time Per Partition
  23. Analysis & Synthesis Messages
- 24. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -56,13 +55,13 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Dec 10 15:31:46 2023       ;
+; Analysis & Synthesis Status        ; Successful - Sun Dec 10 21:14:43 2023       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; main                                        ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 361                                         ;
-;     Total combinational functions  ; 350                                         ;
+; Total logic elements               ; 372                                         ;
+;     Total combinational functions  ; 361                                         ;
 ;     Dedicated logic registers      ; 51                                          ;
 ; Total registers                    ; 51                                          ;
 ; Total pins                         ; 35                                          ;
@@ -181,6 +180,7 @@ agreement for further details.
 +----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                           ; Library ;
 +----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------+---------+
+; game_logic.v                     ; yes             ; User Verilog HDL File        ; M:/project/Main_project/Checker/ECE287_checker/game_logic.v            ;         ;
 ; main.v                           ; yes             ; Auto-Found Verilog HDL File  ; M:/project/Main_project/Checker/ECE287_checker/main.v                  ;         ;
 ; cursor_control.v                 ; yes             ; Auto-Found Verilog HDL File  ; M:/project/Main_project/Checker/ECE287_checker/cursor_control.v        ;         ;
 ; display.v                        ; yes             ; Auto-Found Verilog HDL File  ; M:/project/Main_project/Checker/ECE287_checker/display.v               ;         ;
@@ -200,16 +200,16 @@ agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 361            ;
+; Estimated Total logic elements              ; 372            ;
 ;                                             ;                ;
-; Total combinational functions               ; 350            ;
+; Total combinational functions               ; 361            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 129            ;
-;     -- 3 input functions                    ; 146            ;
-;     -- <=2 input functions                  ; 75             ;
+;     -- 4 input functions                    ; 138            ;
+;     -- 3 input functions                    ; 147            ;
+;     -- <=2 input functions                  ; 76             ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 217            ;
+;     -- normal mode                          ; 228            ;
 ;     -- arithmetic mode                      ; 133            ;
 ;                                             ;                ;
 ; Total registers                             ; 51             ;
@@ -222,8 +222,8 @@ agreement for further details.
 ;                                             ;                ;
 ; Maximum fan-out node                        ; clk_25MHz~reg0 ;
 ; Maximum fan-out                             ; 52             ;
-; Total fan-out                               ; 1356           ;
-; Average fan-out                             ; 2.85           ;
+; Total fan-out                               ; 1397           ;
+; Average fan-out                             ; 2.87           ;
 +---------------------------------------------+----------------+
 
 
@@ -232,14 +232,15 @@ agreement for further details.
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                         ; Entity Name    ; Library Name ;
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
-; |main                              ; 350 (1)             ; 51 (1)                    ; 0           ; 4            ; 0       ; 2         ; 35   ; 0            ; |main                                                       ; main           ; work         ;
+; |main                              ; 361 (1)             ; 51 (1)                    ; 0           ; 4            ; 0       ; 2         ; 35   ; 0            ; |main                                                       ; main           ; work         ;
 ;    |cursor_control:mod|            ; 24 (24)             ; 30 (30)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|cursor_control:mod                                    ; cursor_control ; work         ;
-;    |display:screen|                ; 325 (297)           ; 20 (0)                    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |main|display:screen                                        ; display        ; work         ;
+;    |display:screen|                ; 326 (298)           ; 20 (0)                    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |main|display:screen                                        ; display        ; work         ;
 ;       |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult0                         ; lpm_mult       ; work         ;
 ;          |mult_p5t:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult0|mult_p5t:auto_generated ; mult_p5t       ; work         ;
 ;       |lpm_mult:Mult1|             ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1                         ; lpm_mult       ; work         ;
 ;          |mult_p5t:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1|mult_p5t:auto_generated ; mult_p5t       ; work         ;
 ;       |vga_driver:driver|          ; 28 (28)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|display:screen|vga_driver:driver                      ; vga_driver     ; work         ;
+;    |game_logic:gameplay|           ; 10 (10)             ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|game_logic:gameplay                                   ; game_logic     ; work         ;
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -288,6 +289,20 @@ Encoding Type:  One-Hot
 +-----------------+----------+----------+-----------------+---------+
 
 
++-----------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                             ;
++----------------------------------------------------+-----------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal               ; Free of Timing Hazards ;
++----------------------------------------------------+-----------------------------------+------------------------+
+; game_logic:gameplay|legal_move[0]                  ; game_logic:gameplay|legal_move[5] ; yes                    ;
+; game_logic:gameplay|legal_move[1]                  ; game_logic:gameplay|legal_move[5] ; yes                    ;
+; game_logic:gameplay|legal_move[2]                  ; game_logic:gameplay|legal_move[5] ; yes                    ;
+; game_logic:gameplay|legal_move[3]                  ; game_logic:gameplay|legal_move[5] ; yes                    ;
+; Number of user-specified and inferred latches = 4  ;                                   ;                        ;
++----------------------------------------------------+-----------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +------------------------------------------------------------+
 ; Registers Removed During Synthesis                         ;
 +---------------------------------------+--------------------+
@@ -325,15 +340,15 @@ Encoding Type:  One-Hot
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red[1]         ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|green[4]       ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red            ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[6]    ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[0]    ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[7]    ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_axis[2]      ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |main|display:screen|blue[2]        ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_center[2]    ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |main|display:screen|blue[0]        ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |main|display:screen|x_center[9]    ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[5]    ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[1]    ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|green[2]       ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_axis[0]      ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|y_center[4]    ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|y_center[5]    ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[7]    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------+
 
 
@@ -482,63 +497,6 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+-------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "display:screen"                                                                                                                                                                       ;
-+----------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port                       ; Type  ; Severity ; Details                                                                                                                                                          ;
-+----------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; serialized_board           ; Input ; Warning  ; Input port expression (193 bits) is smaller than the input port (256 bits) it drives.  Extra input bit(s) "serialized_board[255..193]" will be connected to GND. ;
-; serialized_board[173..172] ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[152..151] ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[146..145] ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[125..124] ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[104..103] ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[98..97]   ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[77..76]   ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[56..55]   ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[50..49]   ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[29..28]   ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[8..7]     ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[2..1]     ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[190..186] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[184..174] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[171..165] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[163..153] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[150..147] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[142..138] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[136..126] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[123..117] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[115..105] ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[102..99]  ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[94..90]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[88..78]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[75..69]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[67..57]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[54..51]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[46..42]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[40..30]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[27..21]   ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[19..9]    ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[6..3]     ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[254]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[248]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[227]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[207]      ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[206]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[200]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[179]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[159]      ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[158]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[152]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[131]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[111]      ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-; serialized_board[110]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[104]      ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[83]       ; Input ; Info     ; Stuck at VCC                                                                                                                                                     ;
-; serialized_board[63]       ; Input ; Info     ; Stuck at GND                                                                                                                                                     ;
-+----------------------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
@@ -552,22 +510,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR           ; 6                           ;
 ;     ENA CLR SCLR      ; 10                          ;
 ;     plain             ; 7                           ;
-; cycloneiii_lcell_comb ; 351                         ;
+; cycloneiii_lcell_comb ; 362                         ;
 ;     arith             ; 133                         ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 27                          ;
 ;         3 data inputs ; 105                         ;
-;     normal            ; 218                         ;
+;     normal            ; 229                         ;
 ;         0 data inputs ; 6                           ;
 ;         1 data inputs ; 4                           ;
-;         2 data inputs ; 38                          ;
-;         3 data inputs ; 41                          ;
-;         4 data inputs ; 129                         ;
+;         2 data inputs ; 39                          ;
+;         3 data inputs ; 42                          ;
+;         4 data inputs ; 138                         ;
 ; cycloneiii_mac_mult   ; 2                           ;
 ; cycloneiii_mac_out    ; 2                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 13.90                       ;
-; Average LUT depth     ; 8.69                        ;
+; Average LUT depth     ; 8.72                        ;
 +-----------------------+-----------------------------+
 
 
@@ -586,30 +544,233 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Sun Dec 10 15:31:33 2023
+    Info: Processing started: Sun Dec 10 21:14:30 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Checker -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file game_logic.v
+    Info (12023): Found entity 1: game_logic File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 1
 Warning (12125): Using design file main.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: main File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 1
 Info (12127): Elaborating entity "main" for the top level hierarchy
 Warning (12125): Using design file cursor_control.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: cursor_control File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 1
-Info (12128): Elaborating entity "cursor_control" for hierarchy "cursor_control:mod" File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 45
+Info (12128): Elaborating entity "cursor_control" for hierarchy "cursor_control:mod" File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 48
 Info (10264): Verilog HDL Case Statement information at cursor_control.v(63): all case item expressions in this case statement are onehot File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 63
 Warning (12125): Using design file display.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: display File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 1
-Info (12128): Elaborating entity "display" for hierarchy "display:screen" File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 58
+Info (12128): Elaborating entity "display" for hierarchy "display:screen" File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 62
 Warning (12125): Using design file vga_driver.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: vga_driver File: M:/project/Main_project/Checker/ECE287_checker/vga_driver.v Line: 1
-Info (12128): Elaborating entity "vga_driver" for hierarchy "display:screen|vga_driver:driver" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 25
+Info (12128): Elaborating entity "vga_driver" for hierarchy "display:screen|vga_driver:driver" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 26
 Warning (10230): Verilog HDL assignment warning at vga_driver.v(24): truncated value with size 32 to match size of target (10) File: M:/project/Main_project/Checker/ECE287_checker/vga_driver.v Line: 24
 Warning (10230): Verilog HDL assignment warning at vga_driver.v(28): truncated value with size 32 to match size of target (10) File: M:/project/Main_project/Checker/ECE287_checker/vga_driver.v Line: 28
+Info (12128): Elaborating entity "game_logic" for hierarchy "game_logic:gameplay" File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 70
+Warning (10230): Verilog HDL assignment warning at game_logic.v(99): truncated value with size 64 to match size of target (6) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 99
+Warning (10240): Verilog HDL Always Construct warning at game_logic.v(94): inferring latch(es) for variable "legal_move", which holds its previous value in one or more paths through the always construct File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 94
+Info (10041): Inferred latch for "legal_move[0]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "legal_move[1]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "legal_move[2]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "legal_move[3]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "legal_move[4]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "legal_move[5]" at game_logic.v(107) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+Info (10041): Inferred latch for "board[0][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[0][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[0][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[1][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[1][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[1][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[2][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[2][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[2][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[3][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[3][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[3][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[4][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[4][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[4][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[5][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[5][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[5][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[6][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[6][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[6][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[7][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[7][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[7][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[8][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[8][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[8][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[9][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[9][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[9][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[10][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[10][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[10][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[11][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[11][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[11][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[12][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[12][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[12][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[13][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[13][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[13][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[14][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[14][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[14][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[15][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[15][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[15][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[16][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[16][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[16][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[17][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[17][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[17][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[18][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[18][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[18][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[19][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[19][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[19][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[20][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[20][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[20][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[21][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[21][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[21][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[22][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[22][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[22][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[23][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[23][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[23][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[24][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[24][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[24][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[25][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[25][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[25][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[26][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[26][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[26][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[27][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[27][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[27][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[28][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[28][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[28][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[29][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[29][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[29][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[30][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[30][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[30][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[31][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[31][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[31][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[32][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[32][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[32][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[33][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[33][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[33][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[34][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[34][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[34][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[35][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[35][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[35][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[36][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[36][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[36][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[37][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[37][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[37][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[38][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[38][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[38][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[39][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[39][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[39][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[40][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[40][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[40][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[41][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[41][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[41][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[42][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[42][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[42][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[43][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[43][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[43][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[44][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[44][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[44][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[45][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[45][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[45][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[46][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[46][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[46][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[47][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[47][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[47][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[48][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[48][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[48][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[49][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[49][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[49][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[50][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[50][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[50][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[51][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[51][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[51][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[52][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[52][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[52][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[53][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[53][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[53][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[54][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[54][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[54][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[55][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[55][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[55][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[56][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[56][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[56][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[57][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[57][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[57][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[58][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[58][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[58][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[59][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[59][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[59][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[60][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[60][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[60][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[61][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[61][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[61][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[62][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[62][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[62][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[63][0]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[63][1]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
+Info (10041): Inferred latch for "board[63][2]" at game_logic.v(14) File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 14
 Info (278001): Inferred 2 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult0" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 126
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult1" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 126
-Info (12130): Elaborated megafunction instantiation "display:screen|lpm_mult:Mult0" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 126
-Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the following parameter: File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 126
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult0" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 127
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult1" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 127
+Info (12130): Elaborated megafunction instantiation "display:screen|lpm_mult:Mult0" File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 127
+Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the following parameter: File: M:/project/Main_project/Checker/ECE287_checker/display.v Line: 127
     Info (12134): Parameter "LPM_WIDTHA" = "11"
     Info (12134): Parameter "LPM_WIDTHB" = "11"
     Info (12134): Parameter "LPM_WIDTHP" = "22"
@@ -621,27 +782,31 @@ Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the
     Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_p5t.tdf
     Info (12023): Found entity 1: mult_p5t File: M:/project/Main_project/Checker/ECE287_checker/db/mult_p5t.tdf Line: 29
-Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13012): Latch game_logic:gameplay|legal_move[0] has unsafe behavior File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal cursor_control:mod|sel_loc[0] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal cursor_control:mod|sel_loc[3] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+Warning (13012): Latch game_logic:gameplay|legal_move[1] has unsafe behavior File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal cursor_control:mod|sel_loc[1] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal cursor_control:mod|sel_loc[3] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+Warning (13012): Latch game_logic:gameplay|legal_move[2] has unsafe behavior File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal cursor_control:mod|sel_loc[2] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal cursor_control:mod|sel_loc[3] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+Warning (13012): Latch game_logic:gameplay|legal_move[3] has unsafe behavior File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 107
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal cursor_control:mod|sel_loc[2] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
+    Warning (13013): Ports ENA and CLR on the latch are fed by the same signal cursor_control:mod|sel_loc[3] File: M:/project/Main_project/Checker/ECE287_checker/cursor_control.v Line: 110
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 4 registers lost all their fanouts during netlist optimizations.
-Info (144001): Generated suppressed messages file M:/project/Main_project/Checker/ECE287_checker/output_files/main.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 400 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 411 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 8 input pins
     Info (21059): Implemented 27 output pins
-    Info (21061): Implemented 361 logic cells
+    Info (21061): Implemented 372 logic cells
     Info (21062): Implemented 4 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4771 megabytes
-    Info: Processing ended: Sun Dec 10 15:31:47 2023
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 21 warnings
+    Info: Peak virtual memory: 4775 megabytes
+    Info: Processing ended: Sun Dec 10 21:14:44 2023
     Info: Elapsed time: 00:00:14
     Info: Total CPU time (on all processors): 00:00:22
-
-
-+------------------------------------------+
-; Analysis & Synthesis Suppressed Messages ;
-+------------------------------------------+
-The suppressed messages can be found in M:/project/Main_project/Checker/ECE287_checker/output_files/main.map.smsg.
 
 
