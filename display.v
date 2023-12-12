@@ -4,7 +4,7 @@ module display(
 	 input [191:0] serialized_board, // board state
 	 input [5:0] cursor_loc, //location of the cursor
 	 input [5:0] select_loc, //loaction of selected piece
-	 input [5:0] legal_move, // legal move
+	 input [27:0] legal_move, // legal move
     output wire hsync,     // Horizontal sync output
     output wire vsync,     // Vertical sync output
     output reg [7:0] red,   // Red channel
@@ -132,7 +132,10 @@ wire draw_cursor = ({x_axis, y_axis} == cursor_loc) && ((h_count < x_center - 25
 wire draw_select = ({x_axis, y_axis} == select_loc); //draw the selected piece
 
 // draw legal move
-wire is_legal = ({x_axis, y_axis} == legal_move);
+wire is_legal = ((legal_move[6] == 1) && ({x_axis, y_axis} == legal_move[5:0])) ||
+					 ((legal_move[13] == 1) && ({x_axis, y_axis} == legal_move[12:7])) ||
+					 ((legal_move[20] == 1) && ({x_axis, y_axis} == legal_move[19:14])) ||
+					 ((legal_move[27] == 1) && ({x_axis, y_axis} == legal_move[26:21]));
 
 //deserializing the board
 wire[2:0] board[63:0];

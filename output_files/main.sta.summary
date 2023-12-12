@@ -3,36 +3,20 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk_25MHz~reg0'
-Slack : -1.664
-TNS   : -50.028
-
-Type  : Slow 1200mV 85C Model Setup 'cursor_control:mod|sel_loc[0]'
-Slack : -1.511
-TNS   : -3.895
+Slack : -2.094
+TNS   : -87.368
 
 Type  : Slow 1200mV 85C Model Setup 'clk_50MHz'
-Slack : -0.697
-TNS   : -0.697
-
-Type  : Slow 1200mV 85C Model Hold 'cursor_control:mod|sel_loc[0]'
-Slack : -0.505
-TNS   : -1.552
+Slack : -0.647
+TNS   : -0.647
 
 Type  : Slow 1200mV 85C Model Hold 'clk_25MHz~reg0'
-Slack : 0.406
+Slack : 0.403
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk_50MHz'
-Slack : 0.599
+Slack : 0.623
 TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Recovery 'cursor_control:mod|sel_loc[0]'
-Slack : -1.365
-TNS   : -3.833
-
-Type  : Slow 1200mV 85C Model Removal 'cursor_control:mod|sel_loc[0]'
-Slack : -0.645
-TNS   : -2.541
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_50MHz'
 Slack : -3.000
@@ -40,43 +24,23 @@ TNS   : -4.285
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.285
-TNS   : -64.250
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'cursor_control:mod|sel_loc[0]'
-Slack : 0.461
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Setup 'cursor_control:mod|sel_loc[0]'
-Slack : -1.437
-TNS   : -3.654
+TNS   : -97.660
 
 Type  : Slow 1200mV 0C Model Setup 'clk_25MHz~reg0'
-Slack : -1.397
-TNS   : -40.837
+Slack : -1.846
+TNS   : -72.814
 
 Type  : Slow 1200mV 0C Model Setup 'clk_50MHz'
-Slack : -0.585
-TNS   : -0.585
-
-Type  : Slow 1200mV 0C Model Hold 'cursor_control:mod|sel_loc[0]'
-Slack : -0.390
-TNS   : -0.840
+Slack : -0.518
+TNS   : -0.518
 
 Type  : Slow 1200mV 0C Model Hold 'clk_25MHz~reg0'
-Slack : 0.358
+Slack : 0.354
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'clk_50MHz'
-Slack : 0.557
+Slack : 0.540
 TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Recovery 'cursor_control:mod|sel_loc[0]'
-Slack : -1.301
-TNS   : -3.666
-
-Type  : Slow 1200mV 0C Model Removal 'cursor_control:mod|sel_loc[0]'
-Slack : -0.502
-TNS   : -1.975
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
 Slack : -3.000
@@ -84,54 +48,30 @@ TNS   : -4.285
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.285
-TNS   : -64.250
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'cursor_control:mod|sel_loc[0]'
-Slack : 0.408
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Setup 'cursor_control:mod|sel_loc[0]'
-Slack : -0.629
-TNS   : -1.470
+TNS   : -97.660
 
 Type  : Fast 1200mV 0C Model Setup 'clk_25MHz~reg0'
-Slack : -0.392
-TNS   : -5.807
+Slack : -0.532
+TNS   : -12.184
 
 Type  : Fast 1200mV 0C Model Setup 'clk_50MHz'
-Slack : 0.010
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'cursor_control:mod|sel_loc[0]'
-Slack : -0.573
-TNS   : -1.909
-
-Type  : Fast 1200mV 0C Model Hold 'clk_50MHz'
-Slack : 0.159
-TNS   : 0.000
+Slack : -0.018
+TNS   : -0.018
 
 Type  : Fast 1200mV 0C Model Hold 'clk_25MHz~reg0'
-Slack : 0.184
+Slack : 0.182
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Recovery 'cursor_control:mod|sel_loc[0]'
-Slack : -0.576
-TNS   : -1.472
-
-Type  : Fast 1200mV 0C Model Removal 'cursor_control:mod|sel_loc[0]'
-Slack : -0.661
-TNS   : -2.618
+Type  : Fast 1200mV 0C Model Hold 'clk_50MHz'
+Slack : 0.249
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
 Slack : -3.000
-TNS   : -4.000
+TNS   : -4.043
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.000
-TNS   : -50.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'cursor_control:mod|sel_loc[0]'
-Slack : 0.324
-TNS   : 0.000
+TNS   : -76.000
 
 ------------------------------------------------------------

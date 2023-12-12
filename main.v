@@ -33,7 +33,7 @@ reg[5:0] cursor_loc;
 reg[5:0] select_loc;
 // boardstate the board
 wire [191:0] serialized_board;
-wire [5:0] legal_move;
+wire [27:0] legal_move;
 
 cursor_control mod(
     .clk(clk_25MHz),             					 	// Clock input
@@ -62,8 +62,8 @@ display screen(
 );
 
 game_logic gameplay(
-	.clk(clk_25MHz),
-	.rst(input_rst),
+	.clk(clk_25MHz),             					 	// Clock input
+   .rst(input_rst),
 	.select_loc(select_loc), 						// location of the picked piece
 	.legal_move(legal_move),
 	.serialized_board(serialized_board)

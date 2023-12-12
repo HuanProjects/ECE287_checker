@@ -120,11 +120,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "selected",
+					"name" : "input_rst",
 					"strict" : false
 				},
 				{
-					"name" : "input_rst",
+					"name" : "selected",
 					"strict" : false
 				},
 				{
