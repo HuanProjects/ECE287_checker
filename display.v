@@ -208,9 +208,9 @@ always @(*) begin
 					// draw the small circle
 					if (is_in_small_circle == 1'b1) begin
 						if (board[{x_axis, y_axis}] [0] == 1'b1) begin
-							red = 8'hFF; // yellow 
-							green = 8'hFF;
-							blue = 8'h00;
+							red = 8'd246; // yellow 
+							green = 8'd190;
+							blue = 8'd00;
 						end
 						// if the piece is  a normal piece
 						else begin
@@ -265,7 +265,8 @@ always @(*) begin
 							green = 8'hFF;
 							blue = 8'hFF;
 						end
-					end else if (draw_cursor) begin // draw cursor
+					end
+					if (draw_cursor) begin // draw cursor
 						red = 8'h00; // dark green
 						green = 8'h99;
 						blue = 8'h00;

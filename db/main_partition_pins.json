@@ -128,19 +128,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "btn_down",
-					"strict" : false
-				},
-				{
-					"name" : "btn_up",
-					"strict" : false
-				},
-				{
 					"name" : "btn_right",
 					"strict" : false
 				},
 				{
 					"name" : "btn_left",
+					"strict" : false
+				},
+				{
+					"name" : "btn_down",
+					"strict" : false
+				},
+				{
+					"name" : "btn_up",
 					"strict" : false
 				}
 			]

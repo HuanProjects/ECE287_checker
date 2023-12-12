@@ -14,7 +14,8 @@ module main (
     output wire vsync,     // Vertical sync output
     output [7:0] red,   // Red channel
     output [7:0] green, // Green channel
-    output [7:0] blue   // Blue channel	 
+    output [7:0] blue,   // Blue channel	
+	 output [7:0] turn_count
 );
 
 
@@ -36,7 +37,7 @@ wire [191:0] serialized_board;
 wire [27:0] legal_move;
 
 cursor_control mod(
-    .clk(clk_25MHz),             					 	// Clock input
+    .clk(clk_50MHz),             					 	// Clock input
     .rst(input_rst),           	 					   // rst input
     .in_btn_up(btn_up),       							// Button input for moving up
     .in_btn_down(btn_down),     							// Button input for moving down
@@ -62,10 +63,11 @@ display screen(
 );
 
 game_logic gameplay(
-	.clk(clk_25MHz),             					 	// Clock input
+	.clk(clk_50MHz),             					 	// Clock input
    .rst(input_rst),
 	.select_loc(select_loc), 						// location of the picked piece
 	.legal_move(legal_move),
-	.serialized_board(serialized_board)
+	.serialized_board(serialized_board),
+	.turn_count(turn_count)
 );
 endmodule 

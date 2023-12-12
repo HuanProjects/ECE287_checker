@@ -1,1 +1,1 @@
-Info (10281): Verilog HDL Declaration information at main.v(63): object "board" differs only in case from object "BOARD" in the same scope File: M:/project/Main_project/Checker/ECE287_checker/main.v Line: 63
+Warning (10268): Verilog HDL information at game_logic.v(113): always construct contains both blocking and non-blocking assignments File: M:/project/Main_project/Checker/ECE287_checker/game_logic.v Line: 113
