@@ -4,22 +4,15 @@ module game_logic(
 	input [5:0] select_loc, 						// location of the picked piece
 	output reg [27:0] legal_move,
 	output wire [191:0] serialized_board,
-	output reg [7:0]turn_count
+	input [2:0] switch
 );
 
 /* board [ first 3 bits == x_axis, second 3 bits == y_axis] = 
 [2 == is there a piece in here(1 = yes),  1 == color(1 = red), 0 == is this a king(1 = yes)] */
 reg[2:0] board[63:0];
-reg board_change_en;
-reg [5:0] new_loc;
-reg [2:0] new_piece;
-reg player_turn;
-reg [5:0] old_loc;
-reg [27:0] possible_move; // the transition values for the legal moves 
 
 always@(posedge clk or negedge rst)
 begin
-	
 	if (rst == 1'b0) begin
 		board[{3'd0,3'd0}] <= 3'b0; 
 		board[{3'd0,3'd1}] <= 3'b0;
@@ -85,95 +78,14 @@ begin
 		board[{3'd7,3'd5}] <= 3'b0;
 		board[{3'd7,3'd6}] <= 3'b0;
 		board[{3'd7,3'd7}] <= 3'b0;
+   end else begin
+		if (switch == 3'd1) board[select_loc] <= 0;
+		else if (switch == 3'd2) board[select_loc] <= 3'b110;
+		else if (switch == 3'd3) board[select_loc] <= 3'b100;
+		else if (switch == 3'd4) board[select_loc] <= 3'b111;
+		else if (switch == 3'd5) board[select_loc] <= 3'b101;
 	end 
-	else if (board_change_en == 1'b1) begin 
-		board[new_loc] <= new_piece;
-		board[old_loc] <= 0;
-	end
 end
-
-
-// good ole fsm for players turn and moving pieces
-parameter START = 3'd0,
-			 PIECE_SELECTION = 3'd1,
-			 MOVE = 3'd2,
-			 PIECE_CHANGE = 3'd3,
-			 SWITCH_PLAYER = 3'd4; 
-reg [1:0] S; 
-reg [1:0] NS;
-
-always @ (posedge clk or negedge rst)
-begin 
-	if (rst == 1'b0)
-		S <= START;
-	else 
-		S <= NS; 
-end
-
-always @ (posedge clk or negedge rst)
-begin 
-	if (rst == 1'b0) begin
-		board_change_en <= 0;
-		new_loc <= 0;
-		new_piece <=0;
-		player_turn <= 1; // red player goes first
-		old_loc <= 0;
-		turn_count = 0;
-		possible_move = 0;
-	end
-	else begin
-		case (S) 
-			START: NS = PIECE_SELECTION;  
-			PIECE_SELECTION: begin // player pick a piece
-				if (board[select_loc] [2] == 1'b1 && board[select_loc] [1] == player_turn) begin
-					old_loc <= select_loc;
-					possible_move = legal_move;
-					NS <= MOVE;
-				end else begin
-					NS <= PIECE_SELECTION;
-				end
-			end
-			MOVE: begin // player choose a square to move to
-				if (((possible_move[6] == 1) && (select_loc == possible_move[5:0])) ||
-					((possible_move[13] == 1) && (select_loc == possible_move[12:7])) ||
-					((possible_move[20] == 1) && (select_loc == possible_move[19:14])) ||
-					((possible_move[27] == 1) && (select_loc == possible_move[26:21])))
-				begin
-					new_loc <= select_loc;
-					new_piece = board[old_loc];
-					NS <= PIECE_CHANGE;
-				end
-				else begin
-					NS <= PIECE_SELECTION;
-				end 
-			end
-			PIECE_CHANGE: begin 
-				board_change_en <= 1;
-				NS <= SWITCH_PLAYER;
-			end
-			SWITCH_PLAYER: begin
-				board_change_en = 0;
-				player_turn <= ~player_turn;
-				NS <= PIECE_SELECTION;
-				turn_count = turn_count + 1;
-			end
-		endcase
-	end
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // serializing the board
