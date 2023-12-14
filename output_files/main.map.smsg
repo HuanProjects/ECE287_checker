@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at game_logic.v(174): always construct contains both blocking and non-blocking assignments File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 174
+Warning (10268): Verilog HDL information at game_logic.v(196): always construct contains both blocking and non-blocking assignments File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 196

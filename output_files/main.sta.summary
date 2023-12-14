@@ -3,18 +3,18 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'clk_25MHz~reg0'
-Slack : -5.442
-TNS   : -807.957
+Slack : -5.248
+TNS   : -906.549
 
 Type  : Slow 1200mV 85C Model Setup 'clk_50MHz'
-Slack : -1.224
-TNS   : -16.668
+Slack : -1.174
+TNS   : -13.994
 
-Type  : Slow 1200mV 85C Model Hold 'clk_25MHz~reg0'
+Type  : Slow 1200mV 85C Model Hold 'clk_50MHz'
 Slack : 0.401
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'clk_50MHz'
+Type  : Slow 1200mV 85C Model Hold 'clk_25MHz~reg0'
 Slack : 0.402
 TNS   : 0.000
 
@@ -24,22 +24,22 @@ TNS   : -35.125
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.285
-TNS   : -344.380
+TNS   : -380.360
 
 Type  : Slow 1200mV 0C Model Setup 'clk_25MHz~reg0'
-Slack : -4.937
-TNS   : -717.654
+Slack : -4.752
+TNS   : -806.773
 
 Type  : Slow 1200mV 0C Model Setup 'clk_50MHz'
-Slack : -1.081
-TNS   : -12.986
-
-Type  : Slow 1200mV 0C Model Hold 'clk_25MHz~reg0'
-Slack : 0.352
-TNS   : 0.000
+Slack : -1.063
+TNS   : -10.468
 
 Type  : Slow 1200mV 0C Model Hold 'clk_50MHz'
 Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk_25MHz~reg0'
+Slack : 0.354
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
@@ -48,18 +48,18 @@ TNS   : -35.125
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.285
-TNS   : -344.380
+TNS   : -380.360
 
 Type  : Fast 1200mV 0C Model Setup 'clk_25MHz~reg0'
-Slack : -2.288
-TNS   : -281.124
+Slack : -2.273
+TNS   : -318.829
 
 Type  : Fast 1200mV 0C Model Setup 'clk_50MHz'
-Slack : -0.342
-TNS   : -0.541
+Slack : -0.290
+TNS   : -0.290
 
 Type  : Fast 1200mV 0C Model Hold 'clk_25MHz~reg0'
-Slack : 0.180
+Slack : 0.181
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'clk_50MHz'
@@ -68,10 +68,10 @@ TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_50MHz'
 Slack : -3.000
-TNS   : -29.572
+TNS   : -29.530
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk_25MHz~reg0'
 Slack : -1.000
-TNS   : -268.000
+TNS   : -296.000
 
 ------------------------------------------------------------

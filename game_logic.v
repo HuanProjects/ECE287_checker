@@ -113,12 +113,19 @@ always@(posedge clk or negedge rst)	begin
 		S <= NS;
 end
 
-// reg [27:0] pos_moves;
+reg [27:0] pos_moves;
 reg [5:0] old_loc;
+
+wire is_legal = (select_loc != old_loc) && ((select_loc == pos_moves[5:0]) || 
+                                             (select_loc == pos_moves[12:7]) ||
+                                             (select_loc == pos_moves[19:14]) ||
+                                             (select_loc == pos_moves[26:21]));
+
+
 always@(posedge clk or negedge rst) begin 
 	if (rst == 1'b0) begin
 		switch_color <= 3'd1; // this values is not used
-		// pos_moves <= 0;
+		pos_moves <= 0;
 		board_change_en <= 0;
 		old_loc <= {3'b0,3'b1};
 		piece_change_loc <= 0;
@@ -126,14 +133,14 @@ always@(posedge clk or negedge rst) begin
 	else begin
 		case(S)
 			START: begin
-				// pos_moves <= 0;
+				pos_moves <= 0;
 				switch_color <= 3'd1; // this values is not used
 				board_change_en <= 0;
 				NS <= PIECE_SELECTION;
 			end
 			PIECE_SELECTION: begin
 				if (board[select_loc] [2] == 1'b1) begin // if there is a piece at selected location
-					// pos_moves [27:0] <= legal_move [27:0];
+					pos_moves [27:0] <= legal_move [27:0];
 					switch_color <= board[select_loc];
 					old_loc <= select_loc;
 					NS <= MOVE;
@@ -143,10 +150,10 @@ always@(posedge clk or negedge rst) begin
 				end
 			end
 			MOVE: begin 
-				if (select_loc != old_loc)
+				if (is_legal == 1'b1)
 					NS <= CREATE_NEW_PIECE;
 				else
-					NS <= MOVE;
+					NS <= START;
 			end 
 			CREATE_NEW_PIECE: begin
 				board_change_en <= 1;
