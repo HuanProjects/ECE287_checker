@@ -10,6 +10,7 @@ module game_logic(
 [2 == is there a piece in here(1 = yes),  1 == color(1 = red), 0 == is this a king(1 = yes)] */
 reg [2:0] board[63:0];
 reg [2:0] switch_color;
+reg [5:0] piece_change_loc;
 reg board_change_en;
 always@(posedge clk or negedge rst)
 begin
@@ -79,11 +80,11 @@ begin
 		board[{3'd7,3'd6}] <= 3'b0;
 		board[{3'd7,3'd7}] <= 3'b0;
    end else begin
-		if ((switch_color == 3'd0) && (board_change_en == 1))	 		 board[select_loc] <= 0;
-		else if ((switch_color == 3'b110) && (board_change_en == 1)) board[select_loc] <= 3'b110;
-		else if ((switch_color == 3'b100) && (board_change_en == 1)) board[select_loc] <= 3'b100;
-		else if ((switch_color == 3'b111) && (board_change_en == 1)) board[select_loc] <= 3'b111;
-		else if ((switch_color == 3'b101) && (board_change_en == 1)) board[select_loc] <= 3'b101;
+		if ((switch_color == 3'd0) && (board_change_en == 1))	 		 board[piece_change_loc] <= 0;
+		else if ((switch_color == 3'b110) && (board_change_en == 1)) board[piece_change_loc] <= 3'b110;
+		else if ((switch_color == 3'b100) && (board_change_en == 1)) board[piece_change_loc] <= 3'b100;
+		else if ((switch_color == 3'b111) && (board_change_en == 1)) board[piece_change_loc] <= 3'b111;
+		else if ((switch_color == 3'b101) && (board_change_en == 1)) board[piece_change_loc] <= 3'b101;
 	end 
 end
 
@@ -101,8 +102,9 @@ reg [2:0] NS;
 parameter START = 3'b000,
 			 PIECE_SELECTION = 3'b001, 
 			 MOVE = 3'b010,
-			 PIECE_CHANGE = 3'b011,
-			 SWITCH_PLAYER = 3'b100;
+			 CREATE_NEW_PIECE = 3'b011,
+			 DELETE_OLD_PIECE = 3'b100,
+			 SWITCH_PLAYER = 3'b101;
 			
 always@(posedge clk or negedge rst)	begin 
 	if (rst == 1'b0) 
@@ -119,6 +121,7 @@ always@(posedge clk or negedge rst) begin
 		// pos_moves <= 0;
 		board_change_en <= 0;
 		old_loc <= {3'b0,3'b1};
+		piece_change_loc <= 0;
 	end
 	else begin
 		case(S)
@@ -141,12 +144,18 @@ always@(posedge clk or negedge rst) begin
 			end
 			MOVE: begin 
 				if (select_loc != old_loc)
-					NS <= PIECE_CHANGE;
+					NS <= CREATE_NEW_PIECE;
 				else
 					NS <= MOVE;
 			end 
-			PIECE_CHANGE: begin
+			CREATE_NEW_PIECE: begin
 				board_change_en <= 1;
+				piece_change_loc <= select_loc;
+				NS <= DELETE_OLD_PIECE;
+			end
+			DELETE_OLD_PIECE: begin
+				piece_change_loc <= old_loc;
+				switch_color <= 0;
 				NS <= SWITCH_PLAYER;
 			end
 			SWITCH_PLAYER:begin 

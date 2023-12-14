@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Wed Dec 13 21:48:14 2023
+Wed Dec 13 22:34:54 2023
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -59,15 +59,15 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 13 21:48:14 2023       ;
+; Analysis & Synthesis Status        ; Successful - Wed Dec 13 22:34:54 2023       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; main                                        ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 1,085                                       ;
-;     Total combinational functions  ; 1,063                                       ;
-;     Dedicated logic registers      ; 285                                         ;
-; Total registers                    ; 285                                         ;
+; Total logic elements               ; 1,076                                       ;
+;     Total combinational functions  ; 1,052                                       ;
+;     Dedicated logic registers      ; 293                                         ;
+; Total registers                    ; 293                                         ;
 ; Total pins                         ; 35                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -206,20 +206,20 @@ agreement for further details.
 +---------------------------------------------+-----------------+
 ; Resource                                    ; Usage           ;
 +---------------------------------------------+-----------------+
-; Estimated Total logic elements              ; 1,085           ;
+; Estimated Total logic elements              ; 1,076           ;
 ;                                             ;                 ;
-; Total combinational functions               ; 1063            ;
+; Total combinational functions               ; 1052            ;
 ; Logic element usage by number of LUT inputs ;                 ;
-;     -- 4 input functions                    ; 727             ;
-;     -- 3 input functions                    ; 257             ;
-;     -- <=2 input functions                  ; 79              ;
+;     -- 4 input functions                    ; 702             ;
+;     -- 3 input functions                    ; 264             ;
+;     -- <=2 input functions                  ; 86              ;
 ;                                             ;                 ;
 ; Logic elements by mode                      ;                 ;
-;     -- normal mode                          ; 930             ;
+;     -- normal mode                          ; 919             ;
 ;     -- arithmetic mode                      ; 133             ;
 ;                                             ;                 ;
-; Total registers                             ; 285             ;
-;     -- Dedicated logic registers            ; 285             ;
+; Total registers                             ; 293             ;
+;     -- Dedicated logic registers            ; 293             ;
 ;     -- I/O registers                        ; 0               ;
 ;                                             ;                 ;
 ; I/O pins                                    ; 35              ;
@@ -227,9 +227,9 @@ agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 4               ;
 ;                                             ;                 ;
 ; Maximum fan-out node                        ; input_rst~input ;
-; Maximum fan-out                             ; 264             ;
-; Total fan-out                               ; 4927            ;
-; Average fan-out                             ; 3.46            ;
+; Maximum fan-out                             ; 272             ;
+; Total fan-out                               ; 4892            ;
+; Average fan-out                             ; 3.45            ;
 +---------------------------------------------+-----------------+
 
 
@@ -238,7 +238,7 @@ agreement for further details.
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node         ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                         ; Entity Name    ; Library Name ;
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
-; |main                              ; 1063 (1)            ; 285 (1)                   ; 0           ; 4            ; 0       ; 2         ; 35   ; 0            ; |main                                                       ; main           ; work         ;
+; |main                              ; 1052 (1)            ; 293 (1)                   ; 0           ; 4            ; 0       ; 2         ; 35   ; 0            ; |main                                                       ; main           ; work         ;
 ;    |cursor_control:mod|            ; 18 (18)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|cursor_control:mod                                    ; cursor_control ; work         ;
 ;    |display:screen|                ; 481 (453)           ; 20 (0)                    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |main|display:screen                                        ; display        ; work         ;
 ;       |lpm_mult:Mult0|             ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult0                         ; lpm_mult       ; work         ;
@@ -246,7 +246,7 @@ agreement for further details.
 ;       |lpm_mult:Mult1|             ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1                         ; lpm_mult       ; work         ;
 ;          |mult_p5t:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1|mult_p5t:auto_generated ; mult_p5t       ; work         ;
 ;       |vga_driver:driver|          ; 28 (28)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|display:screen|vga_driver:driver                      ; vga_driver     ; work         ;
-;    |game_logic:gameplay|           ; 563 (563)           ; 240 (240)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|game_logic:gameplay                                   ; game_logic     ; work         ;
+;    |game_logic:gameplay|           ; 552 (552)           ; 248 (248)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|game_logic:gameplay                                   ; game_logic     ; work         ;
 +------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -270,31 +270,33 @@ Note: number of Embedded Multiplier Blocks used is only available after a succes
 
 
 Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------------------------+
-; State Machine - |main|game_logic:gameplay|NS                                                      ;
-+--------------------+-----------------+---------+--------------------+----------+------------------+
-; Name               ; NS.PIECE_CHANGE ; NS.MOVE ; NS.PIECE_SELECTION ; NS.START ; NS.SWITCH_PLAYER ;
-+--------------------+-----------------+---------+--------------------+----------+------------------+
-; NS.START           ; 0               ; 0       ; 0                  ; 0        ; 0                ;
-; NS.PIECE_SELECTION ; 0               ; 0       ; 1                  ; 1        ; 0                ;
-; NS.MOVE            ; 0               ; 1       ; 0                  ; 1        ; 0                ;
-; NS.PIECE_CHANGE    ; 1               ; 0       ; 0                  ; 1        ; 0                ;
-; NS.SWITCH_PLAYER   ; 0               ; 0       ; 0                  ; 1        ; 1                ;
-+--------------------+-----------------+---------+--------------------+----------+------------------+
++------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |main|game_logic:gameplay|NS                                                                                 ;
++---------------------+------------------+---------------------+---------------------+---------+--------------------+----------+
+; Name                ; NS.SWITCH_PLAYER ; NS.DELETE_OLD_PIECE ; NS.CREATE_NEW_PIECE ; NS.MOVE ; NS.PIECE_SELECTION ; NS.START ;
++---------------------+------------------+---------------------+---------------------+---------+--------------------+----------+
+; NS.START            ; 0                ; 0                   ; 0                   ; 0       ; 0                  ; 0        ;
+; NS.PIECE_SELECTION  ; 0                ; 0                   ; 0                   ; 0       ; 1                  ; 1        ;
+; NS.MOVE             ; 0                ; 0                   ; 0                   ; 1       ; 0                  ; 1        ;
+; NS.CREATE_NEW_PIECE ; 0                ; 0                   ; 1                   ; 0       ; 0                  ; 1        ;
+; NS.DELETE_OLD_PIECE ; 0                ; 1                   ; 0                   ; 0       ; 0                  ; 1        ;
+; NS.SWITCH_PLAYER    ; 1                ; 0                   ; 0                   ; 0       ; 0                  ; 1        ;
++---------------------+------------------+---------------------+---------------------+---------+--------------------+----------+
 
 
 Encoding Type:  One-Hot
-+---------------------------------------------------------------------------------------------+
-; State Machine - |main|game_logic:gameplay|S                                                 ;
-+-------------------+----------------+--------+-------------------+---------+-----------------+
-; Name              ; S.PIECE_CHANGE ; S.MOVE ; S.PIECE_SELECTION ; S.START ; S.SWITCH_PLAYER ;
-+-------------------+----------------+--------+-------------------+---------+-----------------+
-; S.START           ; 0              ; 0      ; 0                 ; 0       ; 0               ;
-; S.PIECE_SELECTION ; 0              ; 0      ; 1                 ; 1       ; 0               ;
-; S.MOVE            ; 0              ; 1      ; 0                 ; 1       ; 0               ;
-; S.PIECE_CHANGE    ; 1              ; 0      ; 0                 ; 1       ; 0               ;
-; S.SWITCH_PLAYER   ; 0              ; 0      ; 0                 ; 1       ; 1               ;
-+-------------------+----------------+--------+-------------------+---------+-----------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; State Machine - |main|game_logic:gameplay|S                                                                           ;
++--------------------+-----------------+--------------------+--------------------+--------+-------------------+---------+
+; Name               ; S.SWITCH_PLAYER ; S.DELETE_OLD_PIECE ; S.CREATE_NEW_PIECE ; S.MOVE ; S.PIECE_SELECTION ; S.START ;
++--------------------+-----------------+--------------------+--------------------+--------+-------------------+---------+
+; S.START            ; 0               ; 0                  ; 0                  ; 0      ; 0                 ; 0       ;
+; S.PIECE_SELECTION  ; 0               ; 0                  ; 0                  ; 0      ; 1                 ; 1       ;
+; S.MOVE             ; 0               ; 0                  ; 0                  ; 1      ; 0                 ; 1       ;
+; S.CREATE_NEW_PIECE ; 0               ; 0                  ; 1                  ; 0      ; 0                 ; 1       ;
+; S.DELETE_OLD_PIECE ; 0               ; 1                  ; 0                  ; 0      ; 0                 ; 1       ;
+; S.SWITCH_PLAYER    ; 1               ; 0                  ; 0                  ; 0      ; 0                 ; 1       ;
++--------------------+-----------------+--------------------+--------------------+--------+-------------------+---------+
 
 
 Encoding Type:  One-Hot
@@ -323,21 +325,23 @@ Encoding Type:  One-Hot
 +-----------------+----------+----------+-----------------+---------+
 
 
-+------------------------------------------------------------+
-; Registers Removed During Synthesis                         ;
-+---------------------------------------+--------------------+
-; Register name                         ; Reason for Removal ;
-+---------------------------------------+--------------------+
-; game_logic:gameplay|NS~2              ; Lost fanout        ;
-; game_logic:gameplay|NS~3              ; Lost fanout        ;
-; game_logic:gameplay|S~4               ; Lost fanout        ;
-; game_logic:gameplay|S~5               ; Lost fanout        ;
-; cursor_control:mod|NS~2               ; Lost fanout        ;
-; cursor_control:mod|NS~3               ; Lost fanout        ;
-; cursor_control:mod|S~4                ; Lost fanout        ;
-; cursor_control:mod|S~5                ; Lost fanout        ;
-; Total Number of Removed Registers = 8 ;                    ;
-+---------------------------------------+--------------------+
++-------------------------------------------------------------+
+; Registers Removed During Synthesis                          ;
++----------------------------------------+--------------------+
+; Register name                          ; Reason for Removal ;
++----------------------------------------+--------------------+
+; game_logic:gameplay|NS~2               ; Lost fanout        ;
+; game_logic:gameplay|NS~3               ; Lost fanout        ;
+; game_logic:gameplay|NS~4               ; Lost fanout        ;
+; game_logic:gameplay|S~4                ; Lost fanout        ;
+; game_logic:gameplay|S~5                ; Lost fanout        ;
+; game_logic:gameplay|S~6                ; Lost fanout        ;
+; cursor_control:mod|NS~2                ; Lost fanout        ;
+; cursor_control:mod|NS~3                ; Lost fanout        ;
+; cursor_control:mod|S~4                 ; Lost fanout        ;
+; cursor_control:mod|S~5                 ; Lost fanout        ;
+; Total Number of Removed Registers = 10 ;                    ;
++----------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -345,12 +349,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 285   ;
+; Total registers                              ; 293   ;
 ; Number of registers using Synchronous Clear  ; 80    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 271   ;
+; Number of registers using Asynchronous Clear ; 278   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 101   ;
+; Number of registers using Clock Enable       ; 108   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -368,37 +372,38 @@ Encoding Type:  One-Hot
 ; game_logic:gameplay|board[29][2]        ; 3       ;
 ; game_logic:gameplay|board[54][2]        ; 3       ;
 ; game_logic:gameplay|board[50][2]        ; 3       ;
-; cursor_control:mod|sel_loc[0]           ; 79      ;
+; cursor_control:mod|sel_loc[0]           ; 53      ;
 ; game_logic:gameplay|switch_color[0]     ; 4       ;
-; game_logic:gameplay|old_loc[0]          ; 1       ;
+; game_logic:gameplay|old_loc[0]          ; 2       ;
 ; Total number of inverted registers = 11 ;         ;
 +-----------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[13] ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[5]  ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[9]  ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[14] ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[25] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red[2]              ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[1]         ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[6]         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_center[8]         ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |main|display:screen|blue[2]             ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |main|display:screen|red[3]              ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |main|display:screen|x_center[9]         ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[1]         ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|green[0]            ;
-; 64:1               ; 3 bits    ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; No         ; |main|display:screen|Mux0                ;
-; 64:1               ; 2 bits    ; 84 LEs        ; 84 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux1           ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|y_axis[0]           ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_axis[0]           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[6]       ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|piece_change_loc[1] ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[1]       ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[9]       ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[14]      ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|legal_move[24]      ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red[6]                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[6]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[0]              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_center[2]              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |main|display:screen|blue[2]                  ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |main|display:screen|green[4]                 ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |main|display:screen|x_center[8]              ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[4]              ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|green[3]                 ;
+; 64:1               ; 3 bits    ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; No         ; |main|display:screen|Mux2                     ;
+; 64:1               ; 2 bits    ; 84 LEs        ; 84 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux4                ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|y_center[4]              ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[7]              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 
 
 +-----------------------------------------------------------------+
@@ -447,15 +452,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 +------------------------------------------------------------------+
 ; Parameter Settings for User Entity Instance: game_logic:gameplay ;
-+-----------------+-------+----------------------------------------+
-; Parameter Name  ; Value ; Type                                   ;
-+-----------------+-------+----------------------------------------+
-; START           ; 000   ; Unsigned Binary                        ;
-; PIECE_SELECTION ; 001   ; Unsigned Binary                        ;
-; MOVE            ; 010   ; Unsigned Binary                        ;
-; PIECE_CHANGE    ; 011   ; Unsigned Binary                        ;
-; SWITCH_PLAYER   ; 100   ; Unsigned Binary                        ;
-+-----------------+-------+----------------------------------------+
++------------------+-------+---------------------------------------+
+; Parameter Name   ; Value ; Type                                  ;
++------------------+-------+---------------------------------------+
+; START            ; 000   ; Unsigned Binary                       ;
+; PIECE_SELECTION  ; 001   ; Unsigned Binary                       ;
+; MOVE             ; 010   ; Unsigned Binary                       ;
+; CREATE_NEW_PIECE ; 011   ; Unsigned Binary                       ;
+; DELETE_OLD_PIECE ; 100   ; Unsigned Binary                       ;
+; SWITCH_PLAYER    ; 101   ; Unsigned Binary                       ;
++------------------+-------+---------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -566,29 +572,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 35                          ;
-; cycloneiii_ff         ; 285                         ;
-;     CLR               ; 173                         ;
+; cycloneiii_ff         ; 293                         ;
+;     CLR               ; 174                         ;
 ;     CLR SCLR          ; 10                          ;
-;     ENA               ; 13                          ;
-;     ENA CLR           ; 18                          ;
+;     ENA               ; 14                          ;
+;     ENA CLR           ; 24                          ;
 ;     ENA CLR SCLR      ; 70                          ;
 ;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 1064                        ;
+; cycloneiii_lcell_comb ; 1053                        ;
 ;     arith             ; 133                         ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 27                          ;
 ;         3 data inputs ; 105                         ;
-;     normal            ; 931                         ;
+;     normal            ; 920                         ;
 ;         0 data inputs ; 6                           ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 40                          ;
-;         3 data inputs ; 152                         ;
-;         4 data inputs ; 727                         ;
+;         2 data inputs ; 47                          ;
+;         3 data inputs ; 159                         ;
+;         4 data inputs ; 702                         ;
 ; cycloneiii_mac_mult   ; 2                           ;
 ; cycloneiii_mac_out    ; 2                           ;
 ;                       ;                             ;
 ; Max LUT depth         ; 15.90                       ;
-; Average LUT depth     ; 7.94                        ;
+; Average LUT depth     ; 7.93                        ;
 +-----------------------+-----------------------------+
 
 
@@ -597,7 +603,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:03     ;
 +----------------+--------------+
 
 
@@ -607,7 +613,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Wed Dec 13 21:47:59 2023
+    Info: Processing started: Wed Dec 13 22:34:39 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Checker -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -646,23 +652,23 @@ Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the
     Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_p5t.tdf
     Info (12023): Found entity 1: mult_p5t File: M:/project/Main_project/try_again/ECE287_checker/db/mult_p5t.tdf Line: 29
-Info (13000): Registers with preset signals will power-up high File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 82
+Info (13000): Registers with preset signals will power-up high File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 83
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 8 registers lost all their fanouts during netlist optimizations.
+Info (17049): 10 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file M:/project/Main_project/try_again/ECE287_checker/output_files/main.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1124 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1118 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 8 input pins
     Info (21059): Implemented 27 output pins
-    Info (21061): Implemented 1085 logic cells
+    Info (21061): Implemented 1079 logic cells
     Info (21062): Implemented 4 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4780 megabytes
-    Info: Processing ended: Wed Dec 13 21:48:14 2023
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:26
+    Info: Peak virtual memory: 4796 megabytes
+    Info: Processing ended: Wed Dec 13 22:34:55 2023
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:25
 
 
 +------------------------------------------+
