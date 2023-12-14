@@ -107,22 +107,14 @@ always @(posedge clk or negedge rst) begin
 end
 
 // Update the output position and selected location 
-reg location_selected;
 always @(posedge clk or negedge rst) 
 begin
 	 location <= {x,y};
     if (rst == 1'b0) begin
         sel_loc <= {3'b0,3'b1};
-        location_selected <= 1'b0;
     end
-    else begin
-        if (in_selected == 1'b1) begin
-            sel_loc <= location;
-            location_selected <= 1'b1;
-        end
-        else if (!location_selected) begin
-            sel_loc <= {3'b0,3'b1}; // Or any default value you wish
-        end
+    else if (in_selected == 1'b1) begin
+		  sel_loc <= location;
     end
 end
 

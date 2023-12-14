@@ -8,7 +8,6 @@ module main (
     input btn_right,    	// Button input for moving right
 	 input selected,			// Button input for picking a piece
 	 input wire input_rst,  // Reset input
-	 input [2:0] switch,
 	 // display outputs
     input wire clk_rst,    // reset clk
     output wire hsync,     // Horizontal sync output
@@ -68,8 +67,7 @@ game_logic gameplay(
    .rst(input_rst),
 	.select_loc(select_loc), 						// location of the picked piece
 	.legal_move(legal_move),
-	.serialized_board(serialized_board),
-	.switch(switch)
+	.serialized_board(serialized_board)
 );
 
 endmodule 
