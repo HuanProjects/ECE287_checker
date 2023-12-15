@@ -112,6 +112,26 @@
 					"strict" : false
 				},
 				{
+					"name" : "digit2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "digit2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "digit2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "digit2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "digit2[6]",
+					"strict" : false
+				},
+				{
 					"name" : "clk_rst",
 					"strict" : false
 				},

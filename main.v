@@ -14,8 +14,10 @@ module main (
     output wire vsync,     // Vertical sync output
     output [7:0] red,   // Red channel
     output [7:0] green, // Green channel
-    output [7:0] blue   // Blue channel	
-	 //output [7:0] turn_count
+    output [7:0] blue,   // Blue channel	
+	 //seven segment output for players turn
+	 output wire [6:0] digit1,
+	 output wire [6:0] digit2
 );
 
 
@@ -35,7 +37,7 @@ reg[5:0] select_loc;
 // boardstate the board
 wire [191:0] serialized_board;
 wire [27:0] legal_move;
-
+wire players_turn;
 wire db_selected;
 input_debouncer db(
     .clk(clk_50MHz),         // System clock
@@ -71,11 +73,22 @@ display screen(
 );
 
 game_logic gameplay(
-	.clk(clk_25MHz),             					 	// Clock input
-   .rst(input_rst),
-	.select_loc(select_loc), 						// location of the picked piece
-	.legal_move(legal_move),
-	.serialized_board(serialized_board)
+	.clk(clk_25MHz),             					 		// Clock input
+   .rst(input_rst),											// Rest values
+	.select_loc(select_loc), 								// location of the picked piece
+	.legal_move(legal_move),								// lists of legal moves for display
+	.serialized_board(serialized_board),				// board state
+	.turn(players_turn)
 );
+
+
+// seven_segment to display the players turn
+parameter [6:0] LETTER_P = 7'b1000100; // 'P'
+parameter [6:0] LETTER_1 = 7'b1111001; // '1'
+parameter [6:0] LETTER_2 = 7'b0100100; // '2'
+
+// Assign segment values based on select input
+assign digit1 = LETTER_P;
+assign digit2 = (players_turn == 1'b1) ? LETTER_1 : LETTER_2;
 
 endmodule 
