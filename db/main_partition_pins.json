@@ -124,10 +124,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "selected",
-					"strict" : false
-				},
-				{
 					"name" : "btn_right",
 					"strict" : false
 				},
@@ -141,6 +137,10 @@
 				},
 				{
 					"name" : "btn_up",
+					"strict" : false
+				},
+				{
+					"name" : "selected",
 					"strict" : false
 				},
 				{

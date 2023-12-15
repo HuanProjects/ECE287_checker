@@ -80,11 +80,24 @@ begin
 		board[{3'd7,3'd6}] <= 3'b0;
 		board[{3'd7,3'd7}] <= 3'b0;
    end else begin
-		if ((switch_color == 3'd0) && (board_change_en == 1))	 		 board[piece_change_loc] <= 0;
-		else if ((switch_color == 3'b110) && (board_change_en == 1)) board[piece_change_loc] <= 3'b110;
-		else if ((switch_color == 3'b100) && (board_change_en == 1)) board[piece_change_loc] <= 3'b100;
-		else if ((switch_color == 3'b111) && (board_change_en == 1)) board[piece_change_loc] <= 3'b111;
-		else if ((switch_color == 3'b101) && (board_change_en == 1)) board[piece_change_loc] <= 3'b101;
+		if ((switch_color == 3'd0) && (board_change_en == 1)) 
+			board[piece_change_loc] <= 0;
+		else if ((switch_color == 3'b110) && (board_change_en == 1)) begin 
+			if (piece_change_loc[2:0] == 3'd7)
+				board[piece_change_loc] <= 3'b111;
+			else
+				board[piece_change_loc] <= 3'b110;
+		end
+		else if ((switch_color == 3'b100) && (board_change_en == 1)) begin
+			if (piece_change_loc[2:0] == 3'd0)
+				board[piece_change_loc] <= 3'b101;
+			else
+				board[piece_change_loc] <= 3'b100;
+		end
+		else if ((switch_color == 3'b111) && (board_change_en == 1)) 
+			board[piece_change_loc] <= 3'b111;
+		else if ((switch_color == 3'b101) && (board_change_en == 1)) 
+			board[piece_change_loc] <= 3'b101;
 	end 
 end
 
@@ -96,7 +109,61 @@ generate for (i=0; i<64; i=i+1) begin: PACK_BOARD
 end
 endgenerate	
 
-// fsm 
+// calculating the piece that to be deleted when jumped over
+reg [5:0] old_loc;
+reg [2:0] x_diff;
+reg [2:0] y_diff;
+reg [3:0] x_axis_sel;
+reg [3:0] y_axis_sel;
+reg [3:0] x_axis_old;
+reg [3:0] y_axis_old;
+always @(*) begin
+	if (select_loc[5:3] >= old_loc[5:3]) x_diff = select_loc[5:3] - old_loc[5:3];
+	else											 x_diff = old_loc[5:3] - select_loc[5:3];
+	
+	if (select_loc[2:0] >= old_loc[2:0]) y_diff = select_loc[2:0] - old_loc[2:0];
+	else										    y_diff = old_loc[2:0] - select_loc[2:0];
+	x_axis_sel = {1'b0, select_loc[5:3]};
+	y_axis_sel = {1'b0, select_loc[2:0]};
+	x_axis_old = {1'b0, old_loc[5:3]};
+	y_axis_old = {1'b0, old_loc[2:0]};
+end
+
+// logic to check if moves are legal
+reg [3:0] x_mid;
+reg [3:0] y_mid;
+reg is_legal;
+reg capturable;
+always @(*) begin 
+	if (x_diff == y_diff) begin
+		if (x_diff == 2) begin
+			is_legal = 1'b1;
+			x_mid = (x_axis_sel + x_axis_old) / 2;
+			y_mid = (y_axis_sel + y_axis_old) / 2;
+			capturable = 1'b1;
+		end 
+		else if (x_diff == 1) begin
+			is_legal = 1'b1;
+			capturable = 1'b0;
+			x_mid = 0;
+			y_mid = 0;
+		end
+		else begin
+			is_legal = 1'b0;
+			capturable = 1'b0;
+			x_mid = 0;
+			y_mid = 0;
+		end
+	end
+	else begin
+		is_legal = 1'b0;
+		capturable = 1'b0;
+		x_mid = 0;
+		y_mid = 0;
+	end
+end
+
+// finite state machine defining players' turn and who to go 
 reg [2:0] S;
 reg [2:0] NS;
 parameter START = 3'b000,
@@ -114,43 +181,7 @@ always@(posedge clk or negedge rst)	begin
 		S <= NS;
 end
 
-reg [5:0] old_loc;
-reg [2:0] x_diff;
-reg [2:0] y_diff;
-always @(*) begin
-	if (select_loc[5:3] >= old_loc[5:3]) x_diff = select_loc[5:3] - old_loc[5:3];
-	else											 x_diff = old_loc[5:3] - select_loc[5:3];
-	
-	if (select_loc[2:0] >= old_loc[2:0]) y_diff = select_loc[2:0] - old_loc[2:0];
-	else										    y_diff = old_loc[2:0] - select_loc[2:0];
-end
-
-// defining legal moves
-reg [3:0] x_mid;
-reg [3:0] y_mid;
-reg is_legal;
-reg capturable;
-always @(*) begin 
-	if ((x_diff == y_diff) && (x_diff == 1)) begin
-		is_legal = 1;
-		capturable = 0;
-		x_mid = 0;
-		y_mid = 0;
-	end
-	else if ((x_diff == y_diff) && (x_diff == 2)) begin
-		is_legal = 1;
-		x_mid = ({1'b0, select_loc[5:3]} + {1'b0, old_loc[5:3]}) / 2;
-		y_mid = ({1'b0, select_loc[2:0]} + {1'b0, old_loc[2:0]}) / 2;
-		capturable = 1;
-	end 
-	else begin
-		is_legal = 0;
-		capturable =0;
-		x_mid = 0;
-		y_mid = 0;
-	end
-end 
-
+// 
 always@(posedge clk or negedge rst) begin 
 	if (rst == 1'b0) begin
 		switch_color <= 3'd1; // this values is not used
@@ -188,7 +219,7 @@ always@(posedge clk or negedge rst) begin
 			end
 			DELETE_CAPTURE_PIECE: begin
 				if (capturable == 1'b1) begin
-					piece_change_loc <= {x_mid, y_mid};
+					piece_change_loc <= {x_mid[2:0], y_mid[2:0]};
 					switch_color <= 0;
 				end
 				NS <= DELETE_OLD_PIECE;
