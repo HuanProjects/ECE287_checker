@@ -9,7 +9,9 @@ module display(
     output wire vsync,     // Vertical sync output
     output reg [7:0] red,   // Red channel
     output reg [7:0] green, // Green channel
-    output reg [7:0] blue   // Blue channel
+    output reg [7:0] blue,   // Blue channel
+	 input red_win,
+	 input white_win
 );
 
 wire [9:0] h_count; // current bit x axis
@@ -153,6 +155,16 @@ always @(*) begin
          green =  8'd75;
 			blue = 8'h00;
 		end 
+		else if (white_win == 1'b1) begin
+			red = 8'd211; // light grey 
+			green = 8'd211;
+			blue = 8'd211;
+		end
+		else if (red_win == 1'b1) begin
+			red = 8'd255; // light red 
+			green = 8'd127;
+			blue = 8'd127;
+		end
 		else begin
 		//coloring the entire board
 			// a square has a piece in it.

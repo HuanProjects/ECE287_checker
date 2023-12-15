@@ -39,6 +39,8 @@ wire [191:0] serialized_board;
 wire [27:0] legal_move;
 wire players_turn;
 wire db_selected;
+wire red_win;
+wire white_win;
 input_debouncer db(
     .clk(clk_50MHz),         // System clock
     .rst(input_rst),       // Active low reset
@@ -69,7 +71,9 @@ display screen(
     .vsync(vsync),  										   // Vertical sync output
     .red(red),  											   // Red channel
     .green(green), 											// Green channel
-    .blue(blue) 											   // Blue channel
+    .blue(blue), 											   // Blue channel
+	 .red_win(red_win),
+	 .white_win(white_win)
 );
 
 game_logic gameplay(
@@ -78,12 +82,14 @@ game_logic gameplay(
 	.select_loc(select_loc), 								// location of the picked piece
 	.legal_move(legal_move),								// lists of legal moves for display
 	.serialized_board(serialized_board),				// board state
-	.turn(players_turn)
+	.turn(players_turn),
+	.red_win(red_win),
+	.white_win(white_win)
 );
 
 
 // seven_segment to display the players turn
-parameter [6:0] LETTER_P = 7'b1000100; // 'P'
+parameter [6:0] LETTER_P = 7'b0001100; // 'P'
 parameter [6:0] LETTER_1 = 7'b1111001; // '1'
 parameter [6:0] LETTER_2 = 7'b0100100; // '2'
 

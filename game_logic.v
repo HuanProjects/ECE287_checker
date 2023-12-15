@@ -4,7 +4,9 @@ module game_logic(
 	input [5:0] select_loc, 						// location of the picked piece
 	output reg [27:0] legal_move,
 	output wire [191:0] serialized_board,
-	output wire turn
+	output wire turn,
+	output reg red_win,
+	output reg white_win
 );
 
 /* board [ first 3 bits == x_axis, second 3 bits == y_axis] = 
@@ -244,7 +246,7 @@ always@(posedge clk or negedge rst) begin
 				NS <= SWITCH_PLAYER;
 			end
 			SWITCH_PLAYER:begin 
-				if ((x_diff == 2) && (cont_jump == 1)) begin
+				if (cont_jump == 1) begin
 					players_turn <= players_turn;
 					NS <= PIECE_SELECTION;
 				end
@@ -279,10 +281,10 @@ always@(*) begin
 	top_right = board[{select_loc[5:3] + 3'b1, select_loc[2:0] + 3'b1}];
 	bottom_left = board[{select_loc[5:3] - 3'b1, select_loc[2:0] - 3'b1}];
 	bottom_right = board[{select_loc[5:3] + 3'b1, select_loc[2:0] - 3'b1}];
-	top_left_2 = board[{select_loc[5:3] - 2, select_loc[2:0] + 2}];
-	top_right_2 = board[{select_loc[5:3] + 2, select_loc[2:0] + 2}];
-	bottom_left_2 = board[{select_loc[5:3] - 2, select_loc[2:0] - 2}];
-	bottom_right_2 = board[{select_loc[5:3] + 2, select_loc[2:0] - 2}];
+	top_left_2 = board[{select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2}];
+	top_right_2 = board[{select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2}];
+	bottom_left_2 = board[{select_loc[5:3] - 3'd2, select_loc[2:0] - 3'd2}];
+	bottom_right_2 = board[{select_loc[5:3] + 3'd2, select_loc[2:0] - 3'd2}];
 end
 
 reg cont_jump;
@@ -291,7 +293,16 @@ reg jump_top_right;
 reg jump_bottom_left;
 reg jump_bottom_right;
 always @(*) begin 
-	cont_jump = ~(jump_top_left | jump_top_right | jump_bottom_left | jump_bottom_right);
+	jump_top_left = (select_loc[5:3] > 3'd1) && (select_loc[2:0] < 3'd6) && (top_left_2 [2] == 1'b0) && (board[select_loc] [1] == ~ top_left [1]);
+	jump_top_right = (select_loc[5:3] < 3'd6) && (select_loc[2:0] < 3'd6) && (top_right_2 [2] == 1'b0) && (board[select_loc] [1] == ~ top_right [1]);
+	jump_bottom_left = (select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (bottom_left_2 [2] == 1'b0) && (board[select_loc] [1] == ~ bottom_left [1]);
+	jump_bottom_right = (select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (bottom_right_2 [2] == 1'b0) && (board[select_loc] [1] == ~ bottom_right [1]);
+	if (board[select_loc] [0] == 1'b1) 
+		cont_jump = (jump_top_left | jump_top_right | jump_bottom_left | jump_bottom_right) && (capturable == 1'b1);
+	else if (board[select_loc] [1] == 1'b1)
+		cont_jump = (jump_top_left | jump_top_right) && (capturable == 1'b1);
+	else
+		cont_jump = (jump_bottom_left | jump_bottom_right) && (capturable == 1'b1);
 end 
 
 always @(posedge clk or negedge rst) begin
@@ -309,11 +320,9 @@ always @(posedge clk or negedge rst) begin
 				// this this to find the legal move space for jumping
 				if (board[select_loc] [1] == ~ top_left [1]) begin
 					legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2};
-					jump_top_left <= 1;
 				end
 				else begin
 					legal_move[6:0] <= 0;
-					jump_top_left <= 0;
 				end
 			end
 			
@@ -324,11 +333,9 @@ always @(posedge clk or negedge rst) begin
 				// draw legal move for jump
 				if (board[select_loc] [1] == ~ top_right [1]) begin
 					legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2};
-					jump_top_right <= 1;
 				end
 				else begin
 					legal_move[13:7] <= 0;
-					jump_top_right <= 0;
 				end
 			end
 	
@@ -339,12 +346,10 @@ always @(posedge clk or negedge rst) begin
 			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (bottom_left_2 [2] == 1'b0)) begin
 				if (board[select_loc] [1] == ~ bottom_left [1]) begin
 					legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] - 3'd2};
-					jump_bottom_left <= 1;
 				end
 			end
 			else begin
 				legal_move[20:14] <= 0;
-				jump_bottom_left <= 0;
 			end
 			
 			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] > 3'd0) && (bottom_right [2] == 1'b0)) begin
@@ -353,12 +358,10 @@ always @(posedge clk or negedge rst) begin
 			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (bottom_right_2 [2] == 1'b0)) begin
 				if (board[select_loc] [1] == ~ bottom_right [1]) begin
 					legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] - 3'd2};
-					jump_bottom_right <= 1;
 				end
 			end
 			else begin
 				legal_move[27:21] <= 0;
-				jump_bottom_right <= 0;
 			end
 			
 		end
@@ -373,16 +376,13 @@ always @(posedge clk or negedge rst) begin
 				// this this to find the legal move space for jumping
 				if (board[select_loc] [1] == ~ top_left [1]) begin
 					legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2};
-					jump_top_left <= 1;
 				end
 				else begin
 					legal_move[6:0] <= 0;
-					jump_top_left <= 0;
 				end
 			end
 			else begin
 				legal_move[6:0] <= 0;
-				jump_top_left <= 0;
 			end
 			
 			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] < 3'd7) && ( top_right[2] == 1'b0)) begin
@@ -392,21 +392,16 @@ always @(posedge clk or negedge rst) begin
 				// draw legal move for jump
 				if (board[select_loc] [1] == ~ top_right [1]) begin
 					legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2};
-					jump_top_right <= 1;
 				end
 				else begin
 					legal_move[13:7] <= 0;
-					jump_top_right <= 0;
 				end
 			end
 			else begin
 				legal_move[13:7] <= 0;
-				jump_top_right <= 0;
 			end
 			
 			legal_move[27:14] <= 0;
-			jump_bottom_left <= 0;
-			jump_bottom_right <= 0;
 		end
 		
 		// if a piece is a white
@@ -418,12 +413,10 @@ always @(posedge clk or negedge rst) begin
 			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (bottom_left_2 [2] == 1'b0)) begin
 				if (board[select_loc] [1] == ~ bottom_left [1]) begin
 					legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] - 3'd2};
-					jump_bottom_left <= 1;
 				end
 			end
 			else begin
 				legal_move[20:14] <= 0;
-				jump_bottom_left <= 0;
 			end
 			
 			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] > 3'd0) && (bottom_right [2] == 1'b0)) begin
@@ -432,41 +425,28 @@ always @(posedge clk or negedge rst) begin
 			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (bottom_right_2 [2] == 1'b0)) begin
 				if (board[select_loc] [1] == ~ bottom_right [1]) begin
 					legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] - 3'd2};
-					jump_bottom_right <= 1;
 				end
 			end
 			else begin
 				legal_move[27:21] <= 0;
-				jump_bottom_right <= 0;
 			end
 			legal_move[13:0] <= 0;
-			jump_top_right <= 0;
-			jump_top_left <= 0;
 		end
 		
 		else begin
 			legal_move[27:0] <= 0;
-			jump_top_right <= 0;
-			jump_top_left <= 0;
-			jump_bottom_left <= 0;
-			jump_bottom_right <= 0;
 		end
 	end else begin
 		legal_move[27:0] <= 0;
-		jump_top_right <= 0;
-		jump_top_left <= 0;
-		jump_bottom_left <= 0;
-		jump_bottom_right <= 0;
 	end
 end
 
-/*
+
 // checking win condition, one color wins if there is none left of the other piece
 integer i;
 reg [5:0] red_count = 0;
 reg [5:0] white_count = 0;
-reg red_win;
-reg white_win;
+
 always @(board) begin
     red_count = 0;
     white_count = 0;
@@ -490,5 +470,5 @@ always @(board) begin
 	 else
 		 red_win = 0;
 end
-*/
+
 endmodule
