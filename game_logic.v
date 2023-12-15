@@ -211,66 +211,145 @@ the first bit is to see if the move is the legal move exist ( respresented by 1)
 the next 6 bit is the location of the legal move
 */
 // logic defining the location of the legal move
+reg [2:0]top_left; 
+reg [2:0]top_right;
+reg [2:0]bottom_left;
+reg [2:0]bottom_right;
+reg [2:0]top_left_2; 
+reg [2:0]top_right_2;
+reg [2:0]bottom_left_2;
+reg [2:0]bottom_right_2;
+always@(*) begin 
+	top_left = board[{select_loc[5:3] - 3'b1, select_loc[2:0] + 3'b1}];
+	top_right = board[{select_loc[5:3] + 3'b1, select_loc[2:0] + 3'b1}];
+	bottom_left = board[{select_loc[5:3] - 3'b1, select_loc[2:0] - 3'b1}];
+	bottom_right = board[{select_loc[5:3] + 3'b1, select_loc[2:0] - 3'b1}];
+	top_left_2 = board[{select_loc[5:3] - 2, select_loc[2:0] + 2}];
+	top_right_2 = board[{select_loc[5:3] + 2, select_loc[2:0] + 2}];
+	bottom_left_2 = board[{select_loc[5:3] - 2, select_loc[2:0] - 2}];
+	bottom_right_2 = board[{select_loc[5:3] + 2, select_loc[2:0] - 2}];
+end
 always @(posedge clk or negedge rst) begin
 	if (rst == 1'b0)
 		legal_move <= 0;
 	// only legal if piece has piece
 	else if (board[select_loc] [2] == 1'b1)  begin
-		// if a piece is a red or a king 
-		if((board[select_loc] [1] == 1'b1) || (board[select_loc] [0] == 1'b1)) begin
-		//legal moves needs to stay in the board
-			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] < 3'd7) && (board[{select_loc[5:3] - 1, select_loc[2:0] + 1}] [2] == 1'b0)) begin
+		
+		//if piece is a king 
+		if(board[select_loc] [0] == 1'b1) begin
+			//legal moves needs to stay in the board
+			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] < 3'd7) && ( top_left[2] == 1'b0)) begin
 				// this move is on the top left
 				legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'b1, select_loc[2:0] + 3'b1};
-			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] < 3'd6) && (board[{select_loc[5:3] - 2, select_loc[2:0] + 2}] [2] == 1'b0) && (board[{select_loc[5:3] - 2, select_loc[2:0] + 2}] [1] != board[select_loc] [1])) begin
+			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] < 3'd6) && (top_left_2 [2] == 1'b0)) begin
 				// this this to find the legal move space for jumping
-				legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2};
-			end
-			else begin
-				legal_move[6:0] <= 0;
+				if (board[select_loc] [1] == ~ top_left [1])
+					legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2};
+				else
+					legal_move[6:0] <= 0;
 			end
 			
-			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] < 3'd7) && (board[{select_loc[5:3] + 1, select_loc[2:0] + 1}] [2] == 1'b0)) begin
+			
+			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] < 3'd7) && ( top_right[2] == 1'b0)) begin
 				// this move is on the top right
 				legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'b1, select_loc[2:0] + 3'b1};
-			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] < 3'd6) && (board[{select_loc[5:3] + 2, select_loc[2:0] + 2}] [2] == 1'b0) && (board[{select_loc[5:3] + 2, select_loc[2:0] + 2}] [1] != board[select_loc] [1])) begin
+			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] < 3'd6) && (top_right_2 [2] == 1'b0)) begin
 				// draw legal move for jump
-				legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2};
-			end
-			else begin
-				legal_move[13:7] <= 0;
+				if (board[select_loc] [1] == ~ top_right [1])
+					legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2};
+				else
+					legal_move[13:7] <= 0;
 			end
 			
-			if (board[select_loc] [0] != 1'b1)
-				legal_move[27:14] <= 0;
-		end
-		
-		// if a piece is a white or a king
-		if((board[select_loc] [1] == 1'b0) || (board[select_loc] [0] == 1'b1)) begin
-		//legal moves needs to stay in the board
-			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] > 3'd0) && (board[{select_loc[5:3] - 1, select_loc[2:0] - 1}] [2] == 1'b0)) begin
+			
+			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] > 3'd0) && ( bottom_left[2] == 1'b0)) begin
 				// this move is on the bottom left
 				legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'b1, select_loc[2:0] - 3'b1};
-			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (board[{select_loc[5:3] - 2, select_loc[2:0] - 2}] [2] == 1'b0) && (board[{select_loc[5:3] - 2, select_loc[2:0] - 2}] [1] != board[select_loc] [1])) begin
+			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (bottom_left_2 [2] == 1'b0)) begin
+				if (board[select_loc] [1] == ~ bottom_left [1])
 				legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] - 3'd2};
 			end
 			else begin
 				legal_move[20:14] <= 0;
 			end
 			
-			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] > 3'd0) && (board[{select_loc[5:3] + 1, select_loc[2:0] - 1}] [2] == 1'b0)) begin
+			
+			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] > 3'd0) && (bottom_right [2] == 1'b0)) begin
 				// this move is on the bottom right
 				legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'b1, select_loc[2:0] - 3'b1};
-			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (board[{select_loc[5:3] + 2, select_loc[2:0] - 2}] [2] == 1'b0) && (board[{select_loc[5:3] + 2, select_loc[2:0] - 2}] [1] != board[select_loc] [1])) begin
+			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (bottom_right_2 [2] == 1'b0)) begin
+				if (board[select_loc] [1] == ~ bottom_right [1])
+				legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] - 3'd2};
+			end
+			else begin
+				legal_move[27:21] <= 0;
+			end
+		end
+		
+		// if a piece is a red
+		else if(board[select_loc] [1] == 1'b1) begin
+			//legal moves needs to stay in the board
+			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] < 3'd7) && ( top_left[2] == 1'b0)) begin
+				// this move is on the top left
+				legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'b1, select_loc[2:0] + 3'b1};
+			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] < 3'd6) && (top_left_2 [2] == 1'b0)) begin
+				// this this to find the legal move space for jumping
+				if (board[select_loc] [1] == ~ top_left [1])
+					legal_move[6:0] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] + 3'd2};
+				else
+					legal_move[6:0] <= 0;
+			end
+			else begin
+				legal_move[6:0] <= 0;
+			end
+			
+			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] < 3'd7) && ( top_right[2] == 1'b0)) begin
+				// this move is on the top right
+				legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'b1, select_loc[2:0] + 3'b1};
+			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] < 3'd6) && (top_right_2 [2] == 1'b0)) begin
+				// draw legal move for jump
+				if (board[select_loc] [1] == ~ top_right [1])
+					legal_move[13:7] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] + 3'd2};
+				else
+					legal_move[13:7] <= 0;
+			end
+			else begin
+				legal_move[13:7] <= 0;
+			end
+			
+			legal_move[27:14] <= 0;
+		end
+		
+		// if a piece is a white
+		else if (board[select_loc] [1] == 1'b0) begin
+		//legal moves needs to stay in the board
+			if ((select_loc[5:3] > 3'd0) && (select_loc[2:0] > 3'd0) && ( bottom_left[2] == 1'b0)) begin
+				// this move is on the bottom left
+				legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'b1, select_loc[2:0] - 3'b1};
+			end else if ((select_loc[5:3] > 3'd1) && (select_loc[2:0] > 3'd1) && (bottom_left_2 [2] == 1'b0)) begin
+				if (board[select_loc] [1] == ~ bottom_left [1])
+				legal_move[20:14] <= {1'b1, select_loc[5:3] - 3'd2, select_loc[2:0] - 3'd2};
+			end
+			else begin
+				legal_move[20:14] <= 0;
+			end
+			
+			if ((select_loc[5:3] < 3'd7) && (select_loc[2:0] > 3'd0) && (bottom_right [2] == 1'b0)) begin
+				// this move is on the bottom right
+				legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'b1, select_loc[2:0] - 3'b1};
+			end else if ((select_loc[5:3] < 3'd6) && (select_loc[2:0] > 3'd1) && (bottom_right_2 [2] == 1'b0)) begin
+				if (board[select_loc] [1] == ~ bottom_right [1])
 				legal_move[27:21] <= {1'b1, select_loc[5:3] + 3'd2, select_loc[2:0] - 3'd2};
 			end
 			else begin
 				legal_move[27:21] <= 0;
 			end
 			
-			if (board[select_loc] [1] != 1'b0)
-				legal_move[13:0] <= 0;
+			legal_move[13:0] <= 0;
 		end
+		
+		else
+			legal_move[27:0] <= 0;
 	end else begin
 		legal_move[27:0] <= 0;
 	end
