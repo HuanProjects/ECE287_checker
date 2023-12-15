@@ -1,0 +1,35 @@
+module input_debouncer(
+    input clk,         // System clock
+    input rst,       // Active low reset
+    input noisy_signal, // The noisy input signal
+    output reg stable_signal // The debounced output signal
+);
+
+parameter DEBOUNCE_TIME = 1000;
+
+reg [19:0] counter; // Counter to measure the debounce time
+
+// Debouncing logic
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
+        // Resetting the counter and output when reset is active
+        counter <= 0;
+        stable_signal <= 0;
+    end 
+    else begin
+        if (noisy_signal == stable_signal) begin
+            // Reset the counter if input matches the current stable output
+            counter <= 0;
+        end else begin
+            // Increment the counter when the input does not match the stable output
+            if (counter < DEBOUNCE_TIME) begin
+                counter <= counter + 1;
+            end else begin
+                // Update the stable signal once the debounce time has passed
+                stable_signal <= noisy_signal;
+            end
+        end
+    end
+end
+
+endmodule

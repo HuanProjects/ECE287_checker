@@ -36,6 +36,14 @@ reg[5:0] select_loc;
 wire [191:0] serialized_board;
 wire [27:0] legal_move;
 
+wire db_selected;
+input_debouncer db(
+    .clk(clk_50MHz),         // System clock
+    .rst(input_rst),       // Active low reset
+    .noisy_signal(selected), // The noisy input signal
+    .stable_signal(db_selected) // The debounced output signal
+);
+
 cursor_control mod(
     .clk(clk_50MHz),             					 	// Clock input
     .rst(input_rst),           	 					   // rst input
@@ -43,7 +51,7 @@ cursor_control mod(
     .in_btn_down(btn_down),     							// Button input for moving down
     .in_btn_left(btn_left),     							// Button input for moving left
     .in_btn_right(btn_right),    						// Button input for moving right
-	 .in_selected(selected),								// Button input for picking a piece
+	 .in_selected(db_selected),								// Button input for picking a piece
 	 .sel_loc(select_loc),									// Location of selected piece
     .location(cursor_loc) 									// Location of the cursor
 );
