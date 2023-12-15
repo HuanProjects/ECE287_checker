@@ -443,7 +443,7 @@ end
 
 
 // checking win condition, one color wins if there is none left of the other piece
-integer i;
+integer a;
 reg [5:0] red_count = 0;
 reg [5:0] white_count = 0;
 
@@ -451,9 +451,9 @@ always @(board) begin
     red_count = 0;
     white_count = 0;
 
-    for (i = 0; i < 64; i = i + 1) begin
-        if (board[i][2] == 1'b1) begin  // Check if a piece is present
-            if (board[i][1] == 1'b1) begin
+    for (a = 0; a < 64; a = a + 1) begin
+        if (board[a][2] == 1'b1) begin  // Check if a piece is present
+            if (board[a][1] == 1'b1) begin
                 red_count = red_count + 1;  // Red piece
             end else begin
                 white_count = white_count + 1;  // White piece

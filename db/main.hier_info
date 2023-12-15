@@ -427,6 +427,34 @@ blue[4] <= blue.DB_MAX_OUTPUT_PORT_TYPE
 blue[5] <= blue.DB_MAX_OUTPUT_PORT_TYPE
 blue[6] <= blue.DB_MAX_OUTPUT_PORT_TYPE
 blue[7] <= blue.DB_MAX_OUTPUT_PORT_TYPE
+red_win => red.OUTPUTSELECT
+red_win => red.OUTPUTSELECT
+red_win => red.OUTPUTSELECT
+red_win => red.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => green.OUTPUTSELECT
+red_win => blue.OUTPUTSELECT
+red_win => blue.OUTPUTSELECT
+red_win => blue.OUTPUTSELECT
+white_win => red.OUTPUTSELECT
+white_win => red.OUTPUTSELECT
+white_win => red.OUTPUTSELECT
+white_win => red.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => green.OUTPUTSELECT
+white_win => blue.OUTPUTSELECT
+white_win => blue.OUTPUTSELECT
+white_win => blue.OUTPUTSELECT
 
 
 |main|display:screen|vga_driver:driver
@@ -1307,5 +1335,7 @@ serialized_board[189] <= board[63][0].DB_MAX_OUTPUT_PORT_TYPE
 serialized_board[190] <= board[63][1].DB_MAX_OUTPUT_PORT_TYPE
 serialized_board[191] <= board[63][2].DB_MAX_OUTPUT_PORT_TYPE
 turn <= players_turn.DB_MAX_OUTPUT_PORT_TYPE
+red_win <= Equal11.DB_MAX_OUTPUT_PORT_TYPE
+white_win <= Equal10.DB_MAX_OUTPUT_PORT_TYPE
 
 

@@ -132,7 +132,7 @@ wire is_in_small_circle = ((h_count - x_center) * (h_count - x_center) + (v_coun
 wire draw_cursor = ({x_axis, y_axis} == cursor_loc) && ((h_count < x_center - 25) || (h_count > x_center + 25)
 																		 || (v_count < y_center - 25) || (v_count > y_center + 25)); // draw the cursor
 wire draw_select = ({x_axis, y_axis} == select_loc); //draw the selected piece
-
+					 
 // draw legal move
 wire is_legal = ((legal_move[6] == 1) && ({x_axis, y_axis} == legal_move[5:0])) ||
 					 ((legal_move[13] == 1) && ({x_axis, y_axis} == legal_move[12:7])) ||

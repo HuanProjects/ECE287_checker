@@ -1,5 +1,5 @@
 Analysis & Synthesis report for main
-Fri Dec 15 12:06:01 2023
+Fri Dec 15 13:00:32 2023
 Quartus Prime Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
 
 
@@ -66,13 +66,13 @@ agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 15 12:06:01 2023       ;
+; Analysis & Synthesis Status        ; Successful - Fri Dec 15 13:00:32 2023       ;
 ; Quartus Prime Version              ; 16.1.0 Build 196 10/24/2016 SJ Lite Edition ;
 ; Revision Name                      ; main                                        ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 2,271                                       ;
-;     Total combinational functions  ; 1,921                                       ;
+; Total logic elements               ; 3,715                                       ;
+;     Total combinational functions  ; 3,365                                       ;
 ;     Dedicated logic registers      ; 995                                         ;
 ; Total registers                    ; 995                                         ;
 ; Total pins                         ; 49                                          ;
@@ -265,17 +265,17 @@ agreement for further details.
 +---------------------------------------------+--------------------------+
 ; Resource                                    ; Usage                    ;
 +---------------------------------------------+--------------------------+
-; Estimated Total logic elements              ; 2,271                    ;
+; Estimated Total logic elements              ; 3,715                    ;
 ;                                             ;                          ;
-; Total combinational functions               ; 1921                     ;
+; Total combinational functions               ; 3365                     ;
 ; Logic element usage by number of LUT inputs ;                          ;
-;     -- 4 input functions                    ; 1150                     ;
-;     -- 3 input functions                    ; 484                      ;
-;     -- <=2 input functions                  ; 287                      ;
+;     -- 4 input functions                    ; 1175                     ;
+;     -- 3 input functions                    ; 1304                     ;
+;     -- <=2 input functions                  ; 886                      ;
 ;                                             ;                          ;
 ; Logic elements by mode                      ;                          ;
-;     -- normal mode                          ; 1658                     ;
-;     -- arithmetic mode                      ; 263                      ;
+;     -- normal mode                          ; 2514                     ;
+;     -- arithmetic mode                      ; 851                      ;
 ;                                             ;                          ;
 ; Total registers                             ; 995                      ;
 ;     -- Dedicated logic registers            ; 995                      ;
@@ -288,8 +288,8 @@ agreement for further details.
 ;                                             ;                          ;
 ; Maximum fan-out node                        ; altera_internal_jtag~TDO ;
 ; Maximum fan-out                             ; 415                      ;
-; Total fan-out                               ; 10499                    ;
-; Average fan-out                             ; 3.45                     ;
+; Total fan-out                               ; 14135                    ;
+; Average fan-out                             ; 3.15                     ;
 +---------------------------------------------+--------------------------+
 
 
@@ -298,15 +298,15 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                              ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |main                                                                                                                                   ; 1921 (2)            ; 995 (1)                   ; 131072      ; 4            ; 0       ; 2         ; 49   ; 0            ; |main                                                                                                                                                                                                                                                                                                                                            ; main                              ; work         ;
+; |main                                                                                                                                   ; 3365 (2)            ; 995 (1)                   ; 131072      ; 4            ; 0       ; 2         ; 49   ; 0            ; |main                                                                                                                                                                                                                                                                                                                                            ; main                              ; work         ;
 ;    |cursor_control:mod|                                                                                                                 ; 18 (18)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|cursor_control:mod                                                                                                                                                                                                                                                                                                                         ; cursor_control                    ; work         ;
-;    |display:screen|                                                                                                                     ; 484 (456)           ; 20 (0)                    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |main|display:screen                                                                                                                                                                                                                                                                                                                             ; display                           ; work         ;
+;    |display:screen|                                                                                                                     ; 490 (462)           ; 20 (0)                    ; 0           ; 4            ; 0       ; 2         ; 0    ; 0            ; |main|display:screen                                                                                                                                                                                                                                                                                                                             ; display                           ; work         ;
 ;       |lpm_mult:Mult0|                                                                                                                  ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult0                                                                                                                                                                                                                                                                                                              ; lpm_mult                          ; work         ;
 ;          |mult_p5t:auto_generated|                                                                                                      ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult0|mult_p5t:auto_generated                                                                                                                                                                                                                                                                                      ; mult_p5t                          ; work         ;
 ;       |lpm_mult:Mult1|                                                                                                                  ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1                                                                                                                                                                                                                                                                                                              ; lpm_mult                          ; work         ;
 ;          |mult_p5t:auto_generated|                                                                                                      ; 0 (0)               ; 0 (0)                     ; 0           ; 2            ; 0       ; 1         ; 0    ; 0            ; |main|display:screen|lpm_mult:Mult1|mult_p5t:auto_generated                                                                                                                                                                                                                                                                                      ; mult_p5t                          ; work         ;
 ;       |vga_driver:driver|                                                                                                               ; 28 (28)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|display:screen|vga_driver:driver                                                                                                                                                                                                                                                                                                           ; vga_driver                        ; work         ;
-;    |game_logic:gameplay|                                                                                                                ; 835 (835)           ; 260 (260)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|game_logic:gameplay                                                                                                                                                                                                                                                                                                                        ; game_logic                        ; work         ;
+;    |game_logic:gameplay|                                                                                                                ; 2273 (2273)         ; 260 (260)                 ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|game_logic:gameplay                                                                                                                                                                                                                                                                                                                        ; game_logic                        ; work         ;
 ;    |input_debouncer:db|                                                                                                                 ; 28 (28)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|input_debouncer:db                                                                                                                                                                                                                                                                                                                         ; input_debouncer                   ; work         ;
 ;    |sld_hub:auto_hub|                                                                                                                   ; 127 (1)             ; 91 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
 ;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 126 (0)             ; 91 (0)                    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
@@ -509,42 +509,42 @@ Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                                                                                                                                                                                                                                                               ; Fan out ;
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; game_logic:gameplay|board[9][1]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[25][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[41][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[57][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[50][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[32][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[34][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[48][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[18][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[0][1]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[2][1]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[16][1]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[9][2]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[13][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[31][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[15][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[25][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[29][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[32][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[54][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[50][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[38][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[34][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[48][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[0][2]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[22][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[18][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[6][2]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[2][2]                                                                                                                                                                                                                                                                                                 ; 5       ;
-; game_logic:gameplay|board[16][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[47][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[63][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[45][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[57][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[41][2]                                                                                                                                                                                                                                                                                                ; 5       ;
-; game_logic:gameplay|board[61][2]                                                                                                                                                                                                                                                                                                ; 5       ;
+; game_logic:gameplay|board[9][1]                                                                                                                                                                                                                                                                                                 ; 7       ;
+; game_logic:gameplay|board[25][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[41][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[57][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[50][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[32][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[34][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[48][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[18][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[0][1]                                                                                                                                                                                                                                                                                                 ; 8       ;
+; game_logic:gameplay|board[2][1]                                                                                                                                                                                                                                                                                                 ; 7       ;
+; game_logic:gameplay|board[16][1]                                                                                                                                                                                                                                                                                                ; 7       ;
+; game_logic:gameplay|board[9][2]                                                                                                                                                                                                                                                                                                 ; 17      ;
+; game_logic:gameplay|board[13][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[31][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[15][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[25][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[29][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[32][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[54][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[50][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[38][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[34][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[48][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[0][2]                                                                                                                                                                                                                                                                                                 ; 8       ;
+; game_logic:gameplay|board[22][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[18][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[6][2]                                                                                                                                                                                                                                                                                                 ; 19      ;
+; game_logic:gameplay|board[2][2]                                                                                                                                                                                                                                                                                                 ; 7       ;
+; game_logic:gameplay|board[16][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[47][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[63][2]                                                                                                                                                                                                                                                                                                ; 9       ;
+; game_logic:gameplay|board[45][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[57][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[41][2]                                                                                                                                                                                                                                                                                                ; 17      ;
+; game_logic:gameplay|board[61][2]                                                                                                                                                                                                                                                                                                ; 17      ;
 ; cursor_control:mod|sel_loc[0]                                                                                                                                                                                                                                                                                                   ; 112     ;
 ; game_logic:gameplay|players_turn                                                                                                                                                                                                                                                                                                ; 10      ;
 ; game_logic:gameplay|new_loc[0]                                                                                                                                                                                                                                                                                                  ; 27      ;
@@ -575,32 +575,32 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |main|input_debouncer:db|counter[11]          ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[17]      ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|switch_color[1]     ;
-; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[22]      ;
-; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|piece_change_loc[0] ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |main|input_debouncer:db|counter[4]           ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[18]      ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |main|game_logic:gameplay|switch_color[2]     ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[21]      ;
+; 7:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |main|game_logic:gameplay|piece_change_loc[4] ;
 ; 8:1                ; 6 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[4]       ;
-; 8:1                ; 6 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[10]      ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red[2]                   ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux6                ;
+; 8:1                ; 6 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; Yes        ; |main|game_logic:gameplay|legal_move[11]      ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |main|display:screen|red[6]                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux7                ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux5                ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[0]              ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[0]              ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|y_center[6]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[6]              ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux11               ;
 ; 4:1                ; 48 bits   ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux5                ;
 ; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux7                ;
 ; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux5                ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_center[8]              ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |main|display:screen|blue[0]                  ;
-; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |main|display:screen|red[3]                   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |main|display:screen|y_center[2]              ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; No         ; |main|display:screen|x_center[8]              ;
-; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[4]              ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|green[0]                 ;
-; 64:1               ; 3 bits    ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; No         ; |main|display:screen|Mux1                     ;
+; 6:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |main|display:screen|x_center[1]              ;
+; 64:1               ; 3 bits    ; 126 LEs       ; 126 LEs              ; 0 LEs                  ; No         ; |main|display:screen|Mux0                     ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|blue[2]                  ;
+; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|red[0]                   ;
 ; 64:1               ; 2 bits    ; 84 LEs        ; 84 LEs               ; 0 LEs                  ; No         ; |main|game_logic:gameplay|Mux0                ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |main|display:screen|y_axis[0]                ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_axis[0]                ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|display:screen|x_center[7]              ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; No         ; |main|display:screen|green[0]                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------+
 
 
@@ -885,22 +885,22 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR           ; 50                          ;
 ;     ENA CLR SCLR      ; 70                          ;
 ;     plain             ; 2                           ;
-; cycloneiii_lcell_comb ; 1369                        ;
-;     arith             ; 166                         ;
+; cycloneiii_lcell_comb ; 2813                        ;
+;     arith             ; 754                         ;
 ;         1 data inputs ; 1                           ;
-;         2 data inputs ; 46                          ;
-;         3 data inputs ; 119                         ;
-;     normal            ; 1203                        ;
-;         0 data inputs ; 10                          ;
-;         1 data inputs ; 9                           ;
-;         2 data inputs ; 51                          ;
-;         3 data inputs ; 194                         ;
-;         4 data inputs ; 939                         ;
+;         2 data inputs ; 514                         ;
+;         3 data inputs ; 239                         ;
+;     normal            ; 2059                        ;
+;         0 data inputs ; 14                          ;
+;         1 data inputs ; 123                         ;
+;         2 data inputs ; 64                          ;
+;         3 data inputs ; 894                         ;
+;         4 data inputs ; 964                         ;
 ; cycloneiii_mac_mult   ; 2                           ;
 ; cycloneiii_mac_out    ; 2                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 14.00                       ;
-; Average LUT depth     ; 8.00                        ;
+; Max LUT depth         ; 126.40                      ;
+; Average LUT depth     ; 71.55                       ;
 +-----------------------+-----------------------------+
 
 
@@ -909,7 +909,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:06     ;
 +----------------+--------------+
 
 
@@ -992,7 +992,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.1.0 Build 196 10/24/2016 SJ Lite Edition
-    Info: Processing started: Fri Dec 15 12:05:22 2023
+    Info: Processing started: Fri Dec 15 12:59:51 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Checker -c main
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1003,24 +1003,26 @@ Warning (12125): Using design file main.v, which is not specified as a design fi
 Info (12127): Elaborating entity "main" for the top level hierarchy
 Warning (12125): Using design file input_debouncer.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: input_debouncer File: M:/project/Main_project/try_again/ECE287_checker/input_debouncer.v Line: 1
-Info (12128): Elaborating entity "input_debouncer" for hierarchy "input_debouncer:db" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 47
+Info (12128): Elaborating entity "input_debouncer" for hierarchy "input_debouncer:db" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 49
 Warning (10230): Verilog HDL assignment warning at input_debouncer.v(26): truncated value with size 32 to match size of target (20) File: M:/project/Main_project/try_again/ECE287_checker/input_debouncer.v Line: 26
 Warning (12125): Using design file cursor_control.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: cursor_control File: M:/project/Main_project/try_again/ECE287_checker/cursor_control.v Line: 1
-Info (12128): Elaborating entity "cursor_control" for hierarchy "cursor_control:mod" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 59
+Info (12128): Elaborating entity "cursor_control" for hierarchy "cursor_control:mod" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 61
 Info (10264): Verilog HDL Case Statement information at cursor_control.v(63): all case item expressions in this case statement are onehot File: M:/project/Main_project/try_again/ECE287_checker/cursor_control.v Line: 63
 Critical Warning (10237): Verilog HDL warning at cursor_control.v(112): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: M:/project/Main_project/try_again/ECE287_checker/cursor_control.v Line: 112
 Warning (12125): Using design file display.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: display File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 1
-Info (12128): Elaborating entity "display" for hierarchy "display:screen" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 73
+Info (12128): Elaborating entity "display" for hierarchy "display:screen" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 77
 Warning (12125): Using design file vga_driver.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: vga_driver File: M:/project/Main_project/try_again/ECE287_checker/vga_driver.v Line: 1
-Info (12128): Elaborating entity "vga_driver" for hierarchy "display:screen|vga_driver:driver" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 26
+Info (12128): Elaborating entity "vga_driver" for hierarchy "display:screen|vga_driver:driver" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 28
 Warning (10230): Verilog HDL assignment warning at vga_driver.v(24): truncated value with size 32 to match size of target (10) File: M:/project/Main_project/try_again/ECE287_checker/vga_driver.v Line: 24
 Warning (10230): Verilog HDL assignment warning at vga_driver.v(28): truncated value with size 32 to match size of target (10) File: M:/project/Main_project/try_again/ECE287_checker/vga_driver.v Line: 28
-Info (12128): Elaborating entity "game_logic" for hierarchy "game_logic:gameplay" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 82
-Warning (10230): Verilog HDL assignment warning at game_logic.v(143): truncated value with size 32 to match size of target (4) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 143
-Warning (10230): Verilog HDL assignment warning at game_logic.v(144): truncated value with size 32 to match size of target (4) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 144
+Info (12128): Elaborating entity "game_logic" for hierarchy "game_logic:gameplay" File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 88
+Warning (10230): Verilog HDL assignment warning at game_logic.v(145): truncated value with size 32 to match size of target (4) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 145
+Warning (10230): Verilog HDL assignment warning at game_logic.v(146): truncated value with size 32 to match size of target (4) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 146
+Warning (10230): Verilog HDL assignment warning at game_logic.v(457): truncated value with size 32 to match size of target (6) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 457
+Warning (10230): Verilog HDL assignment warning at game_logic.v(459): truncated value with size 32 to match size of target (6) File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 459
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hb24.tdf
     Info (12023): Found entity 1: altsyncram_hb24 File: M:/project/Main_project/try_again/ECE287_checker/db/altsyncram_hb24.tdf Line: 28
 Info (12021): Found 1 design units, including 1 entities, in source file db/mux_vsc.tdf
@@ -1041,7 +1043,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_ngc File: M:/project/Main_project/try_again/ECE287_checker/db/cmpr_ngc.tdf Line: 23
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_0"
 Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
-Info (11172): 2023.12.15.12:05:44 Progress: Loading sld2d803abf/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2023.12.15.13:00:14 Progress: Loading sld2d803abf/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -1065,10 +1067,10 @@ Info (12021): Found 2 design units, including 1 entities, in source file db/ip/s
 Info (12021): Found 1 design units, including 1 entities, in source file db/ip/sld2d803abf/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
     Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: M:/project/Main_project/try_again/ECE287_checker/db/ip/sld2d803abf/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
 Info (278001): Inferred 2 megafunctions from design logic
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult0" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 127
-    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult1" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 127
-Info (12130): Elaborated megafunction instantiation "display:screen|lpm_mult:Mult0" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 127
-Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the following parameter: File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 127
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult0" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 129
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "display:screen|Mult1" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 129
+Info (12130): Elaborated megafunction instantiation "display:screen|lpm_mult:Mult0" File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 129
+Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the following parameter: File: M:/project/Main_project/try_again/ECE287_checker/display.v Line: 129
     Info (12134): Parameter "LPM_WIDTHA" = "11"
     Info (12134): Parameter "LPM_WIDTHB" = "11"
     Info (12134): Parameter "LPM_WIDTHP" = "22"
@@ -1080,7 +1082,7 @@ Info (12133): Instantiated megafunction "display:screen|lpm_mult:Mult0" with the
     Info (12134): Parameter "MAXIMIZE_SPEED" = "6"
 Info (12021): Found 1 design units, including 1 entities, in source file db/mult_p5t.tdf
     Info (12023): Found entity 1: mult_p5t File: M:/project/Main_project/try_again/ECE287_checker/db/mult_p5t.tdf Line: 29
-Info (13000): Registers with preset signals will power-up high File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 84
+Info (13000): Registers with preset signals will power-up high File: M:/project/Main_project/try_again/ECE287_checker/game_logic.v Line: 86
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "digit1[0]" is stuck at GND File: M:/project/Main_project/try_again/ECE287_checker/main.v Line: 19
@@ -1097,16 +1099,16 @@ Info (17049): 10 registers lost all their fanouts during netlist optimizations.
 Critical Warning (35025): Partially connected in-system debug instance "auto_signaltap_0" to 59 of its 65 required data inputs, trigger inputs, acquisition clocks, and dynamic pins.  There were 0 illegal, 0 inaccessible, and 6 missing sources or connections.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2372 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 3816 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 42 output pins
-    Info (21061): Implemented 2298 logic cells
+    Info (21061): Implemented 3742 logic cells
     Info (21064): Implemented 16 RAM segments
     Info (21062): Implemented 4 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
-    Info: Peak virtual memory: 4856 megabytes
-    Info: Processing ended: Fri Dec 15 12:06:01 2023
-    Info: Elapsed time: 00:00:39
-    Info: Total CPU time (on all processors): 00:00:48
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 25 warnings
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Fri Dec 15 13:00:32 2023
+    Info: Elapsed time: 00:00:41
+    Info: Total CPU time (on all processors): 00:00:49
 
 

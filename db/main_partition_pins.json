@@ -144,11 +144,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "btn_right",
-					"strict" : false
-				},
-				{
-					"name" : "btn_left",
+					"name" : "btn_up",
 					"strict" : false
 				},
 				{
@@ -156,7 +152,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "btn_up",
+					"name" : "btn_right",
+					"strict" : false
+				},
+				{
+					"name" : "btn_left",
 					"strict" : false
 				},
 				{
